@@ -13,7 +13,7 @@ class CreateSequences extends Migration
      */
     public function up()
     {
-        DB::statement(" CREATE SEQUENCE teste START 1 ");
+       // DB::statement(" CREATE SEQUENCE teste START 1 ");
     }
 
     /**
@@ -23,6 +23,6 @@ class CreateSequences extends Migration
      */
     public function down()
     {
-        DB::statement(" DROP SEQUENCE teste ");
+       // DB::statement(" DROP SEQUENCE teste ");
     }
 }
