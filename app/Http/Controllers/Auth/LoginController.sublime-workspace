@@ -1,0 +1,482 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"col",
+				"col-md-4"
+			],
+			[
+				"labe",
+				"label-floating"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"d",
+				"div\tTag"
+			],
+			[
+				"boder",
+				"border-radius"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"fot",
+				"font-weight"
+			],
+			[
+				"te",
+				"text-decoration"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"border-t",
+				"border-top-left-radius"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"st",
+				"style\tAttr"
+			],
+			[
+				"atendiment",
+				"atendimento"
+			],
+			[
+				"atendimento",
+				"atendimentos"
+			],
+			[
+				"cl",
+				"col-md-8"
+			],
+			[
+				"col-md",
+				"col-md-6"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"c",
+				"col-md-8"
+			],
+			[
+				"con",
+				"form-control"
+			],
+			[
+				"control",
+				"label-control"
+			],
+			[
+				"for",
+				"form-group"
+			],
+			[
+				"r",
+				"right"
+			],
+			[
+				"l",
+				"li\tTag"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"fi",
+				"filter"
+			],
+			[
+				"sty",
+				"styles"
+			],
+			[
+				"bl",
+				"black"
+			],
+			[
+				"hi",
+				"hidden-md"
+			],
+			[
+				"do",
+				"dropdown-menu"
+			],
+			[
+				"aler",
+				"alert-roxo"
+			],
+			[
+				"area",
+				"area_atuacao"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"vi",
+				"view"
+			],
+			[
+				"rela",
+				"relatorio"
+			],
+			[
+				"curric",
+				"curriculos"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"aten",
+				"atendimentos"
+			],
+			[
+				"atendi",
+				"Atendimentos"
+			],
+			[
+				"data",
+				"dataerrada"
+			],
+			[
+				"ca",
+				"calculaPeriodo"
+			],
+			[
+				"tele",
+				"telefones"
+			],
+			[
+				"nome",
+				"nome_modal"
+			],
+			[
+				"modal",
+				"modalexcluir"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"s",
+				"style\tAttr"
+			],
+			[
+				"b",
+				"background"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 244.0,
+		"last_filter": "inden",
+		"selected_items":
+		[
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 461.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/accioly/Documentos/LAO/zoneamento/.env",
+		"/home/accioly/Documentos/LAO/zoneamento/vendor/.env",
+		"/home/accioly/Documentos/LAO/ouvidoria2/index.html",
+		"/home/accioly/Documentos/LAO/TImeline360-master/public/css/styles.css",
+		"/home/accioly/Documentos/LAO/TImeline360-master/routes/web.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/app/Http/Controllers/HomeController.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/solicitantes/edit.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/ouvidoria/create.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/ouvidoria/index.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/layouts/material.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/.env",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/welcome.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/home.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/config/database.php",
+		"/home/accioly/Documentos/LAO/gesol/.env",
+		"/home/accioly/Documentos/LAO/gesol/app/Http/Controllers/SolicitacaoController.php",
+		"/home/accioly/Documentos/LAO/gesol/public/css/styles.css",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/includes/layouts/sidebar.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/includes/layouts/topbar.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/principal.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/resources/views/auth/senha.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/solicitacoes/edit.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/solicitacoes/show.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/routes/web.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/layouts/material.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/public/css/material-dashboard.css",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/auth/register.blade.php",
+		"/home/accioly/Documentos/LAO/TImeline360-master/app/Http/Controllers/PrincipalController.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/includes/layouts/footer.blade.php",
+		"/home/accioly/Documentos/LAO/gesol/resources/views/auth/login.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/curriculos/relatorio/geral.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/public/css/styles.css",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/curriculos/relatorios.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/home.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/layouts/pdf.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/public/css/pdf.css",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/lang/en/validation.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/public/vendors/echarts/test/ut/lib/jasmine-2.3.4/jasmine.js",
+		"/home/accioly/Documentos/LAO/trabalho-fw/app/Http/Controllers/CurriculosController.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/layouts/gentellela.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/resources/views/curriculos/relatorio/comprovante.blade.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/routes/web.php",
+		"/home/accioly/Documentos/LAO/trabalho-fw/.env",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/layouts/gentellela.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/atendimentos/create.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/app/Http/Controllers/AtendimentosController.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/carros/index.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/atendimentos/index.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/atendimento/create.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/atendimento/index.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/users/create.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/users/index.blade.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/routes/web.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/app/Http/Controllers/UsersController.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/vendor/symfony/routing/RouteCollection.php",
+		"/home/accioly/Documentos/LAO/mecanica_leandro-master/resources/views/users/edit.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/create.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/public/css/styles.css",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/public/css/print.css",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/show.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/app/Http/Controllers/ParticipantesController.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/index.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/includes/pessoas/index/scripts.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/users/edit.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/users/create.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/relatorios.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/includes/sidebar.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/app/Http/Controllers/UsersController.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/includes/users/scripts.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/users/index.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/edit.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/pessoas/relatorio.blade.php",
+		"/home/accioly/Documentos/LAO/me-ajuda-ai/resources/views/layouts/pff.blade.php"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "LoginController.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"curr",
+				"app/Http/Controllers/CurriculosController.php"
+			],
+			[
+				"routecoll",
+				"mecanica_leandro-master/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php"
+			],
+			[
+				"route",
+				"me-ajuda-ai/vendor/symfony/routing/RouteCollection.php"
+			],
+			[
+				"partici",
+				"app/Http/Controllers/ParticipantesController.php"
+			],
+			[
+				"user",
+				"app/Http/Controllers/UsersController.php"
+			],
+			[
+				"part",
+				"app/Http/Controllers/ParticipantesController.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/home/accioly/Documentos/LAO/gesol/resources/views/solicitantes/gesol.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

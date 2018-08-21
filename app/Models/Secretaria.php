@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Secretaria extends Model implements AuditableContract
+
+class Secretaria extends Model
 {
 
-    use \OwenIt\Auditing\Auditable;
-
- 	protected $table = "secretarias";
+    protected $table = "secretarias";
 
     protected $fillable =[
 

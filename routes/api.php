@@ -16,3 +16,9 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/// rota para buscar setores de uma determinada secretaria
+Route::get("/setoresporsecretaria/{id}", "Api\SetorController@setoresporsecretaria");
+
+/// rota para buscar cargos de um determinado setor
+Route::get("/cargosporsecretaria/{id}", "Api\CargoController@cargosporsecretaria");

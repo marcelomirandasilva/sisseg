@@ -10,30 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-#
-Route::get('/', function () {
-   return view('home');
+
+
+Route::get('/login' , function(){
+	return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
-// Rotas da autenticação
+////////////////////////////// RESOURCES
 
-//Route::get ('/login', 'AutenticaController@telaLogin');
-#Route::get('login', ['as' => 'login', 'uses' => 'AutenticaController@telaLogin']);
-
-#Route::post ('/login', 	'AutenticaController@login');
-#Route::get  ('/logout', 'AutenticaController@logout');
-
-//Autenticação pelo Facebook
-Route::get('loginFacebook', 'FacebookController@login');
-Route::get('facebook', 'FacebookController@pageFacebook');
-
-/*Route::get('loginFacebook/callback', 	'FacebookController@callback');*/
-
-//index do site
-//Route::get ('/', ['as' => 'index', 'uses' => 'PrincipalController@index']);
-
- 
+Route::resource('/usuarios', "UsuarioController");
+Route::resource('/sistemas', 'SistemaController');
+Route::resource('/opcoes', 'OpcoesController');
+Route::resource('/secretarias', "SecretariaController");
+Route::resource('/funcionarios', "FuncionarioController");
+Route::resource('/setores', "SetorController");
+Route::resource('/cargos', "CargoController");

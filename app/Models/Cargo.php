@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Cargo extends Model implements AuditableContract
+
+class Cargo extends Model
 {
-    use \OwenIt\Auditing\Auditable;
+    
 
     protected $table = "cargos";
 
@@ -17,6 +17,8 @@ class Cargo extends Model implements AuditableContract
 		'tipo',
 		'secretaria_id'
     ];
+
+    /////////////////////// Relacionamentos
 
     public function funcionarios()
     {

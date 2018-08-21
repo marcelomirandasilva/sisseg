@@ -1,115 +1,93 @@
-@extends('layouts.principal')
+@extends('principal')
 
-@section('titulo')
+@section('conteudo')
+<div class="container"     style="margin-left: 30%; margin-top: 10%";>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('') }}</div>
 
-@endsection
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
+                        @csrf
 
-@section('content')
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-1 col-form-label text-md-right">{{ __('Email') }}</label>
 
-<h1>TESTE!!!</h1>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-
-{{-- @if ($errors->any())
-    
-    <div class="alert alert-primary alert-with-icon" data-notify="container">
-        <i class="material-icons" data-notify="icon">notifications</i>
-        <button type="button" aria-hidden="true" class="close">
-            <i class="material-icons">close</i>
-        </button>
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>                    
-    </div>
-@endif
- --}}
-<div class="row" style="margin-top:192px;">
-    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3 login-page">
-        <form method="POST" action="{{ url('login') }}">
-                                    {{ csrf_field() }}
-
-            {{-- DIV login-municipe --}}
-           
-            <div id="login" class="card card-login card-hidden">
-                
-                {{-- Logo --}}
-                <div class="logo-roxo logo-pn"></div>
-
-                {{-- Acesso via Facebook ou Google --}}
-                <div class="card-header text-center" data-background-color="roxo">
-                    <div class="social-line"><br><br><br></div>
-                </div>
-                
-                {{-- Acesso por email --}}
-                <div class="card-content">
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-group label-floating has-roxo">
-                            <label class="control-label">E-mail</label>
-                            <input name="email" type="email" class="form-control">
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock_outline</i>
-                        </span>
-                        <div class="form-group label-floating has-roxo">
-                            <label class="control-label">Senha</label>
-                                <input name="password" type="password" class="form-control">
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-1 col-form-label text-md-right">{{ __('Senha') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-2 offset-md-4" style="margin-left: 8%;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Salvar Senha') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4" style="margin-left: 8%;" >
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Entrar') }}
+                                </button>
+
+                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    {{ __('Esqueceu a senha?') }}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                
-                <div class="footer text-center">
-                    <button type="submit" class="btn btn-roxo btn-lg">
-                       Acessar
-                    </button>
-                    <div class="col-md text-center texto-roxo"> Ou, acesse por:</div>
-                </div>
-                     
-               <div class="row">      
-                  <div class="col-md-1 col-md-offset-5">
-                     <a href="loginFacebook" class="btn btn-just-icon btn-round azul-face" >
-                       <i class="fa fa-facebook"></i>
-                     </a>
-                  </div>
-               </div>
-                <!-- <div class="col-md-1 col-md-offset-1">
-                    <a href="loginFacebook" class="btn btn-just-icon btn-round vermelho-google">
-                        <i class="fa fa-google"></i>
-                    </a>
-                </div> -->
-
-               <div class="row" style="text-align: center;">
-                  <a href="{{ url("/password/reset")}}" class="col-md text-center texto-roxo">Esqueceu sua Senha?</a>   
-               </div>
-
-            </div> {{-- FIM DIV login --}}
-
-
-                                    
-
-        </form>
+            </div>
+        </div>
     </div>
-</div> {{-- FIM ROW --}}
+</div>
 @endsection
 
 @push('scripts')
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-        
-                // Testar se há algum erro, e mostrar a notificação
-            @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    demo.notificationRight("top", "right", "rose", "{{ $error }}");     
-                    demo.initFormExtendedDatetimepickers();
-                @endforeach
-            @endif
-            demo.initFormExtendedDatetimepickers();
-        });
-    </script>
+    <!-- Datatables -->
+    <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
+    <script src="{{ asset('vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
+    <script src="{{ asset('vendors/jszip/dist/jszip.min.js')}}"></script>
+    <script src="{{ asset('vendors/pdfmake/build/pdfmake.min.js')}}"></script>
+    <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('js/scripts.js')}}"></script>
+
 @endpush
