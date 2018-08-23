@@ -38,7 +38,15 @@ class SecretariaController extends Controller
      */
     public function create()
     {
-        //
+        // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+       
+         //Obter todos os cargos do banco de dados
+
+        $secretarias = Secretaria::all();
+      
+        return view('secretarias.create', compact('nome_usuario', 'foto_usuario', 'secretarias'));
     }
 
     /**
@@ -49,7 +57,22 @@ class SecretariaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+        // Validar os campos
+        $this->validate($request, [
+            'nome' => 'required',            
+            'secretario' => 'required',
+            'sigla' => 'required',
+            'operante' => 'required',
+    
+        ]);
+
+        $nova_secretaria = Secretaria::create($request->all());
+
+        return redirect('secretarias');
     }
 
     /**

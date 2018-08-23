@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Funcionario;
 use App\Models\Secretaria;
 use App\Models\Cargo;
+use App\Models\Setor;
+
 
 class FuncionarioController extends Controller
 {
@@ -80,10 +82,10 @@ class FuncionarioController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:5|same:password_confirmation',
             'password_confirmation' => 'required|min:5',
-            'cargo' => 'required',
+            'cargo_id' => 'required',
             'tipo' => 'required',
-            'setor' => 'required',
-            'secretaria' => 'required',
+            'setor_id' => 'required',
+            'secretaria_id' => 'required',
             'sistema' => 'required',
         ]);
 
@@ -111,7 +113,30 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        //
+         // Armazenando o nome do usuario logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+         $funcionario = Funcionario::find($id);
+         // dd($funcionario);
+         //Obter todos as secretarias do banco de dados
+
+        $secretarias = Secretaria::all();
+        // dd($secretarias);
+
+         //Obter todos os setores do banco de dados
+        $setores = Setor::all();
+        // dd($setores);
+
+        //Obter todos os cargos do banco de dados
+
+        $cargos = Cargo::all();
+
+        //Obter todos os tipos do banco de dados
+
+        $tipos = pegaValorEnum('funcionarios', 'tipo');
+         
+         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
     }
 
     /**
@@ -123,7 +148,27 @@ class FuncionarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         // Validar os campos
+        $this->validate($request, [
+            'nome' => 'required',
+            'cargo_id' => 'required',
+            'tipo' => 'required',
+            'setor_id' => 'required',
+            'secretaria_id' => 'required',
+            'sistema' => 'required',
+        ]);
+
+        // Procurar o funcionario pelo id
+        $funcionario = Funcionario::find($id);
+
+        // Preencher os campos dele com os valores novos
+        $funcionario->fill($request->all());
+
+        // Salvar as mudanças no banco
+        $funcionario->save();
+
+        // Redirecionar para o index de funcionarios
+        return redirect('funcionarios');
     }
 
     /**

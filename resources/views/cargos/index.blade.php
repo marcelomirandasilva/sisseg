@@ -56,21 +56,26 @@
                     {{$cargo->nome}}
                   </td>
                   <td>
-                    {{$cargo->tipo}}
+                    @if($cargo->tipo == "E")
+                      Efetivo
+                    @else
+                      Comissionado
+                    @endif
+                    
                   </td>
                   <td>
                     {{$cargo->secretaria->nome}}
                   </td>
                                     
                       <td>
-                        <a  
+                       {{--  <a  
                           class="btn_desativa btn btn-danger btn-xs action  pull-right  botao_acao" 
                           data-toggle="tooltip" 
                           data-placement="bottom" 
                           title="Excluir" 
                           href="">
                           <i class="glyphicon glyphicon-remove "></i>
-                        </a>
+                        </a> --}}
 
                         <a  
                           class="btn_ativa btn btn-warning btn-xs action  pull-right  botao_acao" 

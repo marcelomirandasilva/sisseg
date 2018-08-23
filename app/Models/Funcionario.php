@@ -21,7 +21,7 @@ class Funcionario extends Model
         'role_id',
         'cargo_id',
         'tipo'
-        
+
     ];
 
     // Relacionamentos

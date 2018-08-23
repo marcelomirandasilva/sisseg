@@ -39,10 +39,12 @@
  						<thead>
  							<tr>
  								<th>Nome</th>
- 								<th>CPF</th>
- 								<th>Matricula</th>
+ 								{{-- <th>CPF</th>
+ 								<th>Matricula</th> --}}
  								<th>Cargo</th>
+                <th>Tipo</th>
  								<th>Setor</th>
+                <th>Sistema</th>
  								<th>Ações</th>
               				</tr>
  						</thead>
@@ -57,17 +59,23 @@
                   <td>
                     {{$funcionario->nome}}
                   </td>
-                  <td>
+                  {{-- <td>
                     {{$funcionario->CPF}}
                   </td>
                   <td>
                     {{$funcionario->matricula}}
+                  </td> --}}
+                  <td>
+                    {{$funcionario->cargo->nome}}
                   </td>
                   <td>
-                    {{$funcionario->cargo}}
+                    {{$funcionario->tipo}}
                   </td>
                   <td>
-                    {{$funcionario->setor}}
+                    {{$funcionario->setor->nome}}
+                  </td>
+                  <td>
+                    {{$funcionario->sistema}}
                   </td>
                   
                       <td>
@@ -85,7 +93,7 @@
                           data-toggle="tooltip" 
                           data-placement="bottom" 
                           title="Editar"
-                          href="#">  
+                          href="{{ url('funcionarios/' . $funcionario->id . '/edit' )}}">  
                           <i class="glyphicon glyphicon-pencil "></i>
                         </a>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cargo;
+use App\Models\Funcionario;
+use App\Models\Secretaria;
 
 class CargoController extends Controller
 {
@@ -26,8 +28,8 @@ class CargoController extends Controller
         //Obter todos as cargos do banco de dados
 
         $cargos = Cargo::all();
-       // dd($cargos);
-
+        //dd($cargos->all());
+        
         // Chamar a view passando a variável para ela
         return view('cargos.index', compact('nome_usuario', 'foto_usuario', 'cargos'));
     }
@@ -39,7 +41,20 @@ class CargoController extends Controller
      */
     public function create()
     {
-        //
+        // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+        //Obter todos as secretarias do banco de dados
+
+        $secretarias = Secretaria::all();
+        // dd($secretarias);
+
+         //Obter todos os cargos do banco de dados
+
+        $cargos = Cargo::all();
+       
+        return view('cargos.create', compact('nome_usuario', 'foto_usuario', 'secretarias', 'cargos'));
     }
 
     /**
@@ -50,7 +65,21 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+        // Validar os campos
+        $this->validate($request, [
+            'nome' => 'required',
+            'tipo' => 'required',
+            'secretaria_id' => 'required',
+    
+        ]);
+
+        $novo_cargo = Cargo::create($request->all());
+
+        return redirect('cargos');
     }
 
     /**

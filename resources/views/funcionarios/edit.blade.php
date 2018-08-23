@@ -5,20 +5,22 @@
 	<div class="x_panel">
 
 		<div class="x_title">
-			<h2>Cadastro de Funcionarios</h2>
+			<h2>Funcionarios</h2>
 			<div class="clearfix"></div>
 		</div>
 
 		<div class="x_content">
-
-			<form method="POST" action="{{ url("funcionarios") }}" aria-label="{{ ('Register') }}">
+			
+            <form method="POST" action="{{ url("funcionarios/" . $funcionario->id) }}" aria-label="{{ __('Register') }}">
                         @csrf
+
+                          {{ method_field('PUT') }}
 
                         <div class="form-group row">
                             <label for="Nome" class="col-md-2 col-form-label text-md-right">{{ __('Nome') }}</label>
 
                             <div class="col-md-7">
-                                <input id="Nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ old('nome') }}" required autofocus>
+                                <input id="Nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ $funcionario->nome or old('nome') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -28,11 +30,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                     {{--    <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-7">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $funcionario->email or old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -40,9 +42,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="form-group row">
+                      {{--   <div class="form-group row">
                             <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Senha') }}</label>
 
                             <div class="col-md-7">
@@ -54,22 +56,22 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirmar Senha') }}</label>
 
                             <div class="col-md-7">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
-                        </div>
+                        </div> --}}
                         
                         <div class="form-group row">
                             <label for="secretaria" class="col-md-2 col-form-label text-md-right">{{ __('Secretaria') }}</label>
 
                             <div class="col-md-7">
                                 <select id="secretaria" class="form-control{{ $errors->has('secretaria') ? ' is-invalid' : '' }}" name="secretaria_id" required autofocus>
-                                    <option value="">Selecione uma Secretaria...</option>
+                                    <option value="{{ $funcionario->secretaria_id->nome or old('secretaria_id->nome') }}">{{ $funcionario->secretaria_id->nome or old('secretaria->nome') }}</option>
                                         
                                     @foreach($secretarias as $secretaria)
 
@@ -93,7 +95,13 @@
                             <div class="col-md-7">
                                 <select id="setor" class="form-control{{ $errors->has('setor') ? ' is-invalid' : '' }}" name="setor_id"required autofocus>
                                     
-                                    <option value="">Selecione um Setor...</option>
+                                    <option value="{{ $funcionario->setor->nome or old('setor->nome') }}">{{ $funcionario->setor->nome or old('setor->nome') }}</option>
+
+                                    @foreach($setores as $setor)
+
+                                         <option value="{{$setor->id}}">{{$setor->nome}}</option>
+
+                                    @endforeach
 
                                 </select>
 
@@ -111,7 +119,13 @@
                             <div class="col-md-7">
                                 <select id="cargo" class="form-control{{ $errors->has('cargo') ? ' is-invalid' : '' }}" name="cargo_id"required autofocus>
 
-                                    <option value="">Selecione um Cargo...</option>
+                                    <option value="{{ $funcionario->cargo->nome or old('cargo->nome') }}">{{ $funcionario->cargo->nome or old('cargo->nome') }}</option>
+
+                                    @foreach($cargos as $cargo)
+
+                                         <option value="{{$cargo->id}}">{{$cargo->nome}}</option>
+
+                                    @endforeach
                                   
                                 </select>
 
@@ -128,7 +142,7 @@
 
                             <div class="col-md-7">
                                 <select id="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}" name="tipo" required autofocus>
-                                    <option value="">Selecione um Tipo...</option>
+                                    <option value="{{ $funcionario->tipo or old('tipo') }}">{{ $funcionario->tipo or old('tipo') }}</option>
                                         
                                     @foreach($tipos as $tipo)
 
@@ -154,8 +168,8 @@
 
                                     <option value="">Selecione um Sistema...</option>
                                     <option value="1">Habitação</option>
-                                     <option value="1">Trabalho</option>
-                                    <option value="1">Zoneamento</option>
+                                     <option value="2">Trabalho</option>
+                                    <option value="3">Zoneamento</option>
                                         
                                     {{-- @foreach($sistemas as $sistema)
 
@@ -176,7 +190,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-4" style="margin-left: 174px;">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Cadastrar') }}
+                                    {{ __('Salvar') }}
                                 </button>
                             </div>
                         </div>

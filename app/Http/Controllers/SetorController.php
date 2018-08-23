@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Setor;
+use App\Models\Secretaria;
 
 class SetorController extends Controller
 {
@@ -38,7 +39,20 @@ class SetorController extends Controller
      */
     public function create()
     {
-        //
+        // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+        //Obter todos as secretarias do banco de dados
+
+        $secretarias = Secretaria::all();
+        // dd($secretarias);
+
+         //Obter todos os cargos do banco de dados
+
+        $setores = Setor::all();
+      
+        return view('setores.create', compact('nome_usuario', 'foto_usuario', 'secretarias', 'setores'));
     }
 
     /**
@@ -49,7 +63,21 @@ class SetorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // Armazenando o nome do usuário logado na variável $nome_usuario
+        $nome_usuario = Auth::user()->name;
+        $foto_usuario = asset("images/brasao.png");
+
+        // Validar os campos
+        $this->validate($request, [
+            'nome' => 'required',            
+            'secretaria_id' => 'required',
+            'operante' => 'required',
+    
+        ]);
+
+        $novo_setor = Setor::create($request->all());
+
+        return redirect('setores');
     }
 
     /**

@@ -74,7 +74,7 @@
  									SEMMURB
  								</td>
  								<td>
- 									Não
+ 									Sim
  								</td>
  							</tr>
  							{{-- /Linha --}}

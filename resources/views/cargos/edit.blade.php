@@ -34,7 +34,12 @@
                             <label for="tipo" class="col-md-2 col-form-label text-md-right">{{ __('Tipo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="tipo" type="text" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}" name="tipo" value="{{ $cargo->tipo or old('tipo') }}" required>
+                                <select id="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}" name="tipo" value="{{ $cargo->tipo or old('tipo') }}" required>
+
+                                    <option value="E">Efetivo</option>
+                                    <option value="C">Comissionado</option>
+
+                                </select>
 
                                 @if ($errors->has('tipo'))
                                     <span class="invalid-feedback" role="alert">
