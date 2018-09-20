@@ -14,7 +14,7 @@ class FuncionariosSeeder extends Seeder
     {
         // Obter todas as setores
 
-        //$setores = Setor::all();
+        /* $setores = Setor::all();
 
         // COM ERROS NAO RESOLVIDOS!!!!!!!!!!
         
@@ -29,6 +29,12 @@ class FuncionariosSeeder extends Seeder
 
         		});
 
+        } */
+
+        for ($i=0; $i < 50; $i++) { 
+            # code...
+            factory(App\Models\Funcionario::class, 1)->create();
         }
+
     }
 }

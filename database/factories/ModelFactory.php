@@ -56,17 +56,27 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 $factory->define(App\Models\Funcionario::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
+	$secretaria_id  = App\Models\Secretaria::all()->random()->id;
+	$cargo_id		 = App\Models\Cargo::all()->where('secretaria_id', $secretaria_id) ->random()->id;
+	$setor_id		 = App\Models\Setor::all()->where('secretaria_id', $secretaria_id) ->random()->id;
+
+	echo('cargo_id: ' . $cargo_id .' - ');
+	echo('secretaria_id: ' . $secretaria_id .' - ');
+
 	$role_id  = App\Models\Role::all()->random()->id;
-	//$cargo_id = App\Models\Cargo::all()->where('secretaria_id', ->random()->id;
+
 
 	return [
 		'nome'            => $faker->name,
+		'email' 				=> $faker->unique()->safeEmail,
+		'password' 			=> '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+		'remember_token' 	=> str_random(10),
 		'matricula'       => $faker->numberBetween($min = 1111, $max = 99999),
 		'cpf'           	=> $faker->cpf,
-		'cargo'			   => $faker->jobTitle,
 		'foto'				=> $faker->imageUrl(120, 150, 'people', true, 'Faker'),
 		'role_id'			=> $role_id,
-		//'cargo_id'			=> $cargo_id,
+		'cargo_id'			=> $cargo_id,
+		'setor_id'			=> $setor_id,
 	];
 });
 
