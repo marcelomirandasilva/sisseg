@@ -15,12 +15,12 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
     return [
-        
+
         'email' 		=> $faker->unique()->safeEmail,
         'status' 		=> $faker->randomElement(['Ativo','Inativo']),
         'password' 	=> $password ?: $password = bcrypt('secret'),
         'avatar' 		=> $faker->imageUrl(120, 150, 'people', true, 'Faker'),
-        
+
     ];
 });
 
@@ -56,17 +56,39 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 $factory->define(App\Models\Funcionario::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
-	$role_id  = App\Models\Role::all()->random()->id;
-	//$cargo_id = App\Models\Cargo::all()->where('secretaria_id', ->random()->id;
+    $setor      = App\Models\Setor::all()->random();
+    $id_setor   = $setor->id;
+    echo("setor: " .$id_setor);
+    echo("\n");
+
+    $secretaria = App\Models\Secretaria::find($setor->secretaria_id);
+    $id_secretaria  = $secretaria->id;
+    echo("secretaria: " .$id_secretaria);
+    echo("\n");
+
+    $cargo = App\Models\Cargo::where('secretaria_id', $id_secretaria)->inRandomOrder()->get();
+    $id_cargo  = $cargo[0]['id'];
+
+    echo("cargo: " .$id_cargo);
+    echo("\n");
+
+
+    $role  = App\Models\Role::all()->random();
+    $id_role  = $role->id;
+
+    // TIPO
+	$vetor = pegaValorEnum('funcionarios','tipo');
+	$v_tipo = $vetor[array_rand($vetor,1)];
 
 	return [
-		'nome'            => $faker->name,
-		'matricula'       => $faker->numberBetween($min = 1111, $max = 99999),
-		'cpf'           	=> $faker->cpf,
-		'cargo'			   => $faker->jobTitle,
-		'foto'				=> $faker->imageUrl(120, 150, 'people', true, 'Faker'),
-		'role_id'			=> $role_id,
-		//'cargo_id'			=> $cargo_id,
+		'nome'          => $faker->name,
+		'cpf'          	=> $faker->cpf,
+		'matricula'     => $faker->numberBetween($min = 1111, $max = 99999),
+		'foto'			=> $faker->imageUrl(120, 150, 'people', true, 'Faker'),
+		'tipo'		    => $v_tipo,
+		'cargo_id'		=> $id_cargo,
+		'setor_id'		=> $id_setor,
+		'role_id'		=> $id_role,
 	];
 });
 
@@ -88,7 +110,7 @@ $factory->define(App\Models\Comentario::class, function(Faker\Generator $faker) 
 
 
 	return [
-		'comentario'         => $faker->realText($maxNbChars = 30, $indexSize = 2), 
+		'comentario'         => $faker->realText($maxNbChars = 30, $indexSize = 2),
 		'encerramento'      	=> $faker-> boolean($chanceOfGettingTrue = 90),
 		'lida'           		=> $faker-> boolean($chanceOfGettingTrue = 50),
 		'funcionario_id'		=> $funcionario_id,
@@ -143,8 +165,8 @@ $factory->define(App\Models\Solicitacao::class, function(Faker\Generator $faker)
 	$faker = Faker\Factory::create('pt_BR');
 
 	$gera_servico 	= App\Models\Servico::all()->random()->id;
-	$servico 		= App\Models\Servico::find($gera_servico); 
-	
+	$servico 		= App\Models\Servico::find($gera_servico);
+
 	$foto = 'data:image/jpg;base64,' . base64_encode(file_get_contents($faker->imageUrl(1024, 768, 'nature', true, 'Faker')));
 
 	return [
@@ -213,7 +235,7 @@ $factory->define(App\Models\Solicitante::class, function(Faker\Generator $faker)
 			"Deficiência Mental",
 			"Deficiência Múltipla",
     	]);
-    
+
     else
     	$tipo = null;
 
@@ -225,7 +247,7 @@ $factory->define(App\Models\Solicitante::class, function(Faker\Generator $faker)
 		'email' 							=> $faker->unique()->email,
 
 		'sexo'                    	=> $sexo,
-		
+
 		'fb_uid'               		=> $faker->numerify('#########'),
 		'fb_token' 						=> $faker->lexify('??????????????????'),
 		'foto'							=> $foto,
@@ -245,7 +267,7 @@ $factory->define(App\Models\Solicitante::class, function(Faker\Generator $faker)
 		'emissao_rg'              	=> $faker->date('Y-m-d', '-18 years'),
 		'orgao_emissor_rg'        	=> $faker->randomElement(['DETRAN', 'IFP', 'Marinha do Brasil']),
 		'rg'                      	=> $faker->rg,
-		'titulo_eleitor'          	=> $faker->numerify("########"), // Número de Dígitos 		
+		'titulo_eleitor'          	=> $faker->numerify("########"), // Número de Dígitos
 		'emissao_titulo'          	=> $faker->date('Y-m-d', '-18 years'),
 		'zona_eleitoral'          	=> $faker->randomNumber(4),
 		'nascimento'              	=> $nascimento,
@@ -254,12 +276,12 @@ $factory->define(App\Models\Solicitante::class, function(Faker\Generator $faker)
 		'pai'                 		=> $faker->name,
 		'mae'                 		=> $faker->firstNameFemale . $faker->lastname,
 		'estado_civil'				=> $faker->randomElement(['Solteiro(a)',
-												                'Casado(a)', 
+												                'Casado(a)',
 												                'Divorciado(a)',
 												                'Viúvo(a)',
 												                'Separado(a)',
 												                'União estável']),
-		
+
 		'profissao'					=> $faker->jobTitle,
 		'escolaridade'       		=> $faker->randomElement(['Fundamental - Incompleto','Fundamental - Completo',
 																			'Médio - Incompleto','Médio - Completo',
@@ -267,7 +289,7 @@ $factory->define(App\Models\Solicitante::class, function(Faker\Generator $faker)
 																			'Pós-graduação - Incompleto','Pós-graduação - Completo',
 																			'Mestrado - Incompleto','Mestrado - Completo',
 																			'Doutorado - Incompleto','Doutorado - Completo']),
-		
+
 		'created_at'              => $faker->dateTimeBetween('-5 weeks', 'now'),
  	];
 });
