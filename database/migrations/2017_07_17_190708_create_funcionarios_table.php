@@ -15,6 +15,11 @@ class CreateFuncionariosTable extends Migration
     {
         Schema::create('funcionarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->mediumText('avatar')->nullable();
+            $table->rememberToken();
+
             $table->string('nome');                
             $table->char('cpf',14)                          ->nullable();
             $table->string('matricula', 12)                 ->nullable();

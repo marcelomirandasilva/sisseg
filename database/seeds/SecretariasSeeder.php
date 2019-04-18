@@ -114,7 +114,7 @@ class SecretariasSeeder extends Seeder
 			DB::table('cargos')->insert(['nome' => 'Gerente de Apoio Operacional de Programas Sociais','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente de Articulação','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente de Centro POP','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
-			DB::table('cargos')->insert(['nome' => '"Gerente de CRAS Referência da Assistência Social)"','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
+			DB::table('cargos')->insert(['nome' => 'Gerente de CRAS Referência da Assistência Social)','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente de Políticas de Proteção Social','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente de Polo Social','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente de Programa Economia Solidária','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
@@ -129,10 +129,10 @@ class SecretariasSeeder extends Seeder
 			DB::table('cargos')->insert(['nome' => 'Gerente dos Conselhos Municipais','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente Financeiro','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Gerente Operacional de Centros de Referência','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
-			DB::table('cargos')->insert(['nome' => '"Secretário Municipal de Assistência Social"','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
+			DB::table('cargos')->insert(['nome' => 'Secretário Municipal de Assistência Social','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 			DB::table('cargos')->insert(['nome' => 'Subcoordenador da CORDEF','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
-			DB::table('cargos')->insert(['nome' => '"Subsecretário Municipal Adjunto de Assistência Social"','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
-			DB::table('cargos')->insert(['nome' => '"Subsecretário Municipal de Assistência Social"','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
+			DB::table('cargos')->insert(['nome' => 'Subsecretário Municipal Adjunto de Assistência Social','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
+			DB::table('cargos')->insert(['nome' => 'Subsecretário Municipal de Assistência Social','secretaria_id' => $secretariaID ,'tipo' =>'E' ]);
 
 			
 			//====================================================================================================================================================================

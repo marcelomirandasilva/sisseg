@@ -22,10 +22,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 ////////////////////////////// RESOURCES
 
-Route::resource('/usuarios', "UsuarioController");
-Route::resource('/sistemas', 'SistemaController');
-Route::resource('/opcoes', 'OpcoesController');
+Route::resource('/usuarios',    "UsuarioController");
+Route::resource('/sistemas',    'SistemaController');
+Route::resource('/opcoes',      'OpcoesController');
 Route::resource('/secretarias', "SecretariaController");
-Route::resource('/funcionarios', "FuncionarioController");
-Route::resource('/setores', "SetorController");
-Route::resource('/cargos', "CargoController");
+Route::resource('/funcionarios',"FuncionarioController");
+Route::resource('/setores',     "SetorController");
+Route::resource('/cargos',      "CargoController");

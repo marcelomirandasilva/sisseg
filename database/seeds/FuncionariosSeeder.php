@@ -20,5 +20,6 @@ class FuncionariosSeeder extends Seeder
 
             factory(App\Models\Funcionario::class)->create();
         }
+
     }
 }
