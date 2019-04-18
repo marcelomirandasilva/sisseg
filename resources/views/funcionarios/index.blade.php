@@ -5,7 +5,7 @@
 <div class="x_panel">
 
 		<div class="x_title">
-			<h2>Lista de Funcionarios</h2>
+			<h2>Lista de Funcionários</h2>
 			<a class="btn btn-success title-right" style="margin-left: 90%;" href="{{ url ('funcionarios/create')}}">Adicionar</a>
 			<div class="clearfix"></div>
 		</div>
@@ -15,7 +15,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Funcionarios {{-- <small>Users</small> --}}</h2>
+                    <h2>Funcionários {{-- <small>Users</small> --}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>

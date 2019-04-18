@@ -59,8 +59,7 @@
                   <td>
                     {{$secretaria->secretario}}
                   </td>
-                  <td>
-                    {{$secretaria->sigla}}
+                  <td>             {{$secretaria->sigla}}
                   </td>
                   <td>
                     @if($secretaria->operante) Sim @else Não @endif
