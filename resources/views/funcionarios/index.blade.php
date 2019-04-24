@@ -97,7 +97,7 @@
                           <i class="glyphicon glyphicon-pencil "></i>
                         </a>
 
-                        {{-- <a  
+                        <a  
                           class="btn_ativa btn btn-primary btn-xs action  pull-right  botao_acao" 
                           data-toggle="tooltip" 
                           data-funcionario =
@@ -105,7 +105,7 @@
                           title="Visualizar"
                           href="#">  
                           <i class="glyphicon glyphicon-eye-open "></i>
-                        </a> --}}
+                        </a>
                       </td>
                 </tr>
                 {{-- /Linha --}}

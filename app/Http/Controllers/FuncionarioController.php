@@ -8,7 +8,7 @@ use App\Models\Funcionario;
 use App\Models\Secretaria;
 use App\Models\Cargo;
 use App\Models\Setor;
-
+use App\Models\Sistema;
 
 class FuncionarioController extends Controller
 {
@@ -52,6 +52,10 @@ class FuncionarioController extends Controller
         $secretarias = Secretaria::all();
         // dd($secretarias);
 
+         //Obter todos os sistemas do banco de dados
+        // $sistemas = Sistema::all();
+        // dd($sistemas);
+
          //Obter todos os cargos do banco de dados
 
         $cargos = Cargo::all();
@@ -86,7 +90,7 @@ class FuncionarioController extends Controller
             'tipo' => 'required',
             'setor_id' => 'required',
             'secretaria_id' => 'required',
-            'sistema' => 'required',
+            
         ]);
 
         $novo_funcionario = Funcionario::create($request->all());
@@ -128,6 +132,10 @@ class FuncionarioController extends Controller
         $setores = Setor::all();
         // dd($setores);
 
+         //Obter todos os sistemas do banco de dados
+        $sistemas = Sistema::all();
+        // dd($sistemas);
+
         //Obter todos os cargos do banco de dados
 
         $cargos = Cargo::all();
@@ -136,7 +144,7 @@ class FuncionarioController extends Controller
 
         $tipos = pegaValorEnum('funcionarios', 'tipo');
          
-         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
+         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'sistemas', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
     }
 
     /**

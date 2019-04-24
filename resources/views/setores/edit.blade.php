@@ -48,10 +48,15 @@
                             <label for="operante" class="col-md-2 col-form-label text-md-right">{{ __('Operante') }}</label>
 
                             <div class="col-md-6">
-                                <select id="operante" class="form-control{{ $errors->has('operante') ? ' is-invalid' : '' }}" name="operante" value="{{ $setor->operante or old('operante') }}" required>
-                                    
-                                    <option value="0">Não</option>
-                                    <option value="1">Sim</option>
+                                <select id="operante" class="form-control{{ $errors->has('operante') ? ' is-invalid' : '' }}" name="operante" required>
+
+                                    @if ($setor->operante)
+                                        <option value="0">Não</option>
+                                        <option value="1" selected>Sim</option>
+                                    @else
+                                        <option value="0" selected>Não</option>
+                                        <option value="1" >Sim</option>
+                                    @endif
 
                                 </select>
 

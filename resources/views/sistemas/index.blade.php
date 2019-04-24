@@ -34,56 +34,102 @@
  						<thead>
  							<tr>
  								<th>Sistema</th>
- 								<th>Setor</th>
  								<th>Ativo</th>
+                <th>Ações</th>
  							</tr>
  						</thead>
 
  						<tbody>
- 							{{-- Linha --}}
- 							<tr>
- 								<td>
- 									Habitação
- 								</td>
- 								<td>
- 									SEMMURB
- 								</td>
- 								<td>
- 									Sim
- 								</td>
- 							</tr>
- 							{{-- /Linha --}}
- 							{{-- Linha --}}
- 							<tr>
- 								<td>
- 									Trabalho
- 								</td>
- 								<td>
- 									SETRADE
- 								</td>
- 								<td>
- 									Sim
- 								</td>
- 							</tr>
 
+               {{-- Iterar por cada item da lista $sistemas e chamá-la de $sistema --}}
+              @foreach($sistemas as $sistema)
+ 							{{-- Linha --}}
  							<tr>
  								<td>
- 									Zoneamento 360
+ 									 {{$sistema->nome}}
  								</td>
+ 								
  								<td>
- 									SEMMURB
+ 									  @if($sistema->ativo) Sim @else Não @endif
  								</td>
- 								<td>
- 									Sim
- 								</td>
+
+                <td>                    
+                    <a  
+                      class="btn_ativa btn btn-warning btn-xs action  pull-right  botao_acao" 
+                      data-toggle="tooltip" 
+                      data-placement="bottom" 
+                      title="Editar"
+                      href="{{ url('sistemas/' . $sistema->id . '/edit' )}}">  
+                      <i class="glyphicon glyphicon-pencil "></i>
+                    </a>
+
+                    <a  
+                      class="btn_ativa btn btn-primary btn-xs action  pull-right  botao_acao" 
+                       data-toggle="modal"
+                      data-target= "#myModal{{ $sistema->id }}"
+                      data-placement="bottom"
+                      title="Visualizar"
+                      href="#">  
+                      <i class="glyphicon glyphicon-eye-open "></i>
+                    </a>
+                </td>
+                    
  							</tr>
  							{{-- /Linha --}}
+              @endforeach
+ 						
  						</tbody>
 
  					</table>
                   </div>
                 </div>
               </div>
+
+                                                        <!-- Inicio Modal -->
+  @foreach($sistemas as $key=> $sistema)
+
+         <div class="modal fade" id="myModal{{ $sistema->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"  aria-hidden="true">
+           <div class="modal-dialog" role="document">
+             <div class="modal-content">
+
+               <div class="modal-header" style="background: #342a54; color: #fff;" >
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true" style="color: #fff;">&times;</span>
+                 </button>
+                 <h5 class="modal-title text-center " id="exampleModalLabel">SISTEMA</h5>
+               </div>
+               <div class="modal-body">
+                     <br>
+                  <div class="form-group">
+                  <label class="control-label col-md-2 col-sm-2 col-xs-12" for="nome">Nome:</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     <input type="text" id="nome" class="form-control" name="nome" style="margin-top: -6px;" autofocus
+                     value="{{ $sistema->nome or old('nome') }}">
+                  </div>
+               </div><br><br>
+
+               <div class="form-group">
+                  <label class="control-label col-md-2 col-sm-2 col-xs-12" for="ativo">Ativo:</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     <input type="ativo" id="ativo" class="form-control" name="ativo" style="margin-top: -6px;"  
+                     value="@if($sistema->ativo) Sim @else Não @endif">
+                  </div>
+               </div><br><br>
+               
+             </div>
+
+              <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                 <a href="{{ url('sistemas/' . $sistema->id . '/edit' )}}" class="btn btn-warning"   data-toggle="tooltip"
+                  data-sistema = "{{ $sistema->id }}" data-placement="bottom" >Editar</a>
+               </div>
+
+           </div>
+         </div>
+       </div>
+
+      @endforeach
+                                       <!-- Fim Modal -->
 
 @endsection
 

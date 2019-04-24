@@ -62,10 +62,15 @@
                             <label for="operante" class="col-md-2 col-form-label text-md-right">{{ __('Operante') }}</label>
 
                             <div class="col-md-6">
-                                <select id="operante" class="form-control{{ $errors->has('operante') ? ' is-invalid' : '' }}" name="operante" value="{{ $secretaria->operante or old('operante') }}" required>
+                                <select id="operante" class="form-control{{ $errors->has('operante') ? ' is-invalid' : '' }}" name="operante" required>
                                     
-                                    <option value="0">Não</option>
-                                    <option value="1">Sim</option>
+                                     @if ($secretaria->operante)
+                                        <option value="0">Não</option>
+                                        <option value="1" selected>Sim</option>
+                                    @else
+                                        <option value="0" selected>Não</option>
+                                        <option value="1" >Sim</option>
+                                    @endif
 
                                 </select>
 
@@ -89,5 +94,7 @@
 		</div>
 
 	</div>
+
+    
 
 @endsection

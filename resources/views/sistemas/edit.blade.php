@@ -11,14 +11,16 @@
 
 		<div class="x_content">
 
-			<form method="POST" action="{{ url("sistemas") }}" aria-label="{{ __('Register') }}">
+			<form method="POST" action="{{ url("sistemas/" . $sistema->id) }}" aria-label="{{ __('Register') }}">
                         @csrf
-                     
+
+                        {{ method_field('PUT') }}
+
                         <div class="form-group row">
                             <label for="nome" class="col-md-2 col-form-label text-md-right">{{ __('Nome') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="" required autofocus>
+                                <input id="nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ $sistema->nome or old('nome') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -27,16 +29,21 @@
                                 @endif
                             </div>
                         </div>
-                       
+
+                     
                         <div class="form-group row">
                             <label for="ativo" class="col-md-2 col-form-label text-md-right">{{ __('Ativo') }}</label>
 
                             <div class="col-md-6">
-                                <select id="ativo" class="form-control{{ $errors->has('ativo') ? ' is-invalid' : '' }}" name="ativo" value="" required>
-                                    
-                                    <option value="">Selecione...</option>                                 
-                                    <option value="1">Sim</option>
-                                     <option value="0">Não</option>
+
+                                <select id="ativo" class="form-control{{ $errors->has('ativo') ? ' is-invalid' : '' }}" name="ativo" required autofocus >
+                                    @if ($sistema->ativo)
+                                        <option value="0">Não</option>
+                                        <option value="1" selected>Sim</option>
+                                    @else
+                                        <option value="0" selected>Não</option>
+                                        <option value="1" >Sim</option>
+                                    @endif
 
                                 </select>
 

@@ -160,22 +160,19 @@
                             </div>
                         </div>
                         
-                        <div class="form-group row">
+        {{--                 <div class="form-group row">
                             <label for="sistema" class="col-md-2 col-form-label text-md-right">{{ __('Sistemas') }}</label>
 
-                            <div class="col-md-7">
-                                <select id="sistema" class="form-control{{ $errors->has('sistema') ? ' is-invalid' : '' }}" name="sistema" required autofocus>
-
-                                    <option value="">Selecione um Sistema...</option>
-                                    <option value="1">Habitação</option>
-                                     <option value="2">Trabalho</option>
-                                    <option value="3">Zoneamento</option>
+                            <div class="col-md-3">
+                                <select id="sistema" class="form-control{{ $errors->has('sistema') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
                                         
-                                    {{-- @foreach($sistemas as $sistema)
+                                    <option value="">Selecione um Sistema...</option>
+
+                                    @foreach($sistemas as $sistema)
 
                                          <option value="{{$sistema->id}}">{{$sistema->nome}}</option>
 
-                                    @endforeach --}}
+                                    @endforeach
 
                                 </select>
 
@@ -185,7 +182,29 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+
+                            <label for="role" class="col-md-1 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                            <div class="col-md-3">
+                                <select id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
+                                        
+                                    <option value="">Selecione uma Role...</option>
+
+                                    {{-- @foreach($sistemas as $sistema)
+
+                                         <option value="{{$sistema->id}}">{{$sistema->nome}}</option>
+
+                                    @endforeach
+
+                                </select>
+
+                                @if ($errors->has('sistema'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('sistema') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div> --}}
 
                         <div class="form-group row mb-0">
                             <div class="col-md-5 offset-md-4" style="margin-left: 174px;">

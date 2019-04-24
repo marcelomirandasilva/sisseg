@@ -13,25 +13,24 @@ use Illuminate\Http\Request;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//  Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 
-Route::group(['middleware' => 'auth:api'], function(){
-    Route::apiResource('/funcionarios', "Api\FuncionarioController");
-    Route::get("/setoresporsecretaria/{id}", "SetorController@setoresporsecretaria");
-    Route::get("/cargosporsecretaria/{id}", "Api\CargoController@cargosporsecretaria");
+// Route::group(['middleware' => 'auth:api'], function(){
+//     Route::apiResource('/funcionarios', "Api\FuncionarioController");
+//     Route::get("/setoresporsecretaria/{id}", "SetorController@setoresporsecretaria");
+//     Route::get("/cargosporsecretaria/{id}", "Api\CargoController@cargosporsecretaria");
    
     
-});
+// });
 
- */
-/* 
+ 
+ 
 /// rota para buscar setores de uma determinada secretaria
-    Route::get("/setoresporsecretaria/{id}", "SetorController@setoresporsecretaria");
+    Route::get("/setoresporsecretaria/{id}", "Api\SetorController@setoresporsecretaria");
     /// rota para buscar cargos de um determinado setor
     Route::get("/cargosporsecretaria/{id}", "Api\CargoController@cargosporsecretaria");
     Route::apiResource('/funcionarios', "Api\FuncionarioController");
-*/
