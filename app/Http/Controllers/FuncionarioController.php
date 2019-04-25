@@ -133,7 +133,7 @@ class FuncionarioController extends Controller
         // dd($setores);
 
          //Obter todos os sistemas do banco de dados
-        $sistemas = Sistema::all();
+        // $sistemas = Sistema::all();
         // dd($sistemas);
 
         //Obter todos os cargos do banco de dados
@@ -144,7 +144,7 @@ class FuncionarioController extends Controller
 
         $tipos = pegaValorEnum('funcionarios', 'tipo');
          
-         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'sistemas', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
+         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
     }
 
     /**
@@ -163,7 +163,7 @@ class FuncionarioController extends Controller
             'tipo' => 'required',
             'setor_id' => 'required',
             'secretaria_id' => 'required',
-            'sistema' => 'required',
+        
         ]);
 
         // Procurar o funcionario pelo id
@@ -187,6 +187,8 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $funcionario = Funcionario::find($id);
+        
+        $funcionario->delete();
     }
 }

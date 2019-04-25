@@ -80,16 +80,19 @@
                   
                       <td>
                         <a  
-                          class="btn_desativa btn btn-danger btn-xs action  pull-right  botao_acao" 
-                          data-toggle="tooltip" 
-                          data-placement="bottom" 
+                          class="btn-excluir btn btn-danger btn-xs action  botao_acao"
+                          data-id="{{$funcionario->id}}"
+                          data-nome="{{ $funcionario->nome }}" 
+                          data-toggle="modal"
+                          data-toggle="tooltip"
+                          data-target="#modalexcluir"
                           title="Excluir" 
-                          href="">
+                          href="#">
                           <i class="glyphicon glyphicon-remove "></i>
                         </a>
 
                         <a  
-                          class="btn_ativa btn btn-warning btn-xs action  pull-right  botao_acao" 
+                          class="btn btn-warning btn-xs action  botao_acao" 
                           data-toggle="tooltip" 
                           data-placement="bottom" 
                           title="Editar"
@@ -97,15 +100,15 @@
                           <i class="glyphicon glyphicon-pencil "></i>
                         </a>
 
-                        <a  
-                          class="btn_ativa btn btn-primary btn-xs action  pull-right  botao_acao" 
+                        {{-- <a  
+                          class="btn btn-primary btn-xs action  pull-right  botao_acao" 
                           data-toggle="tooltip" 
                           data-funcionario =
                           data-placement="bottom" 
                           title="Visualizar"
                           href="#">  
                           <i class="glyphicon glyphicon-eye-open "></i>
-                        </a>
+                        </a> --}}
                       </td>
                 </tr>
                 {{-- /Linha --}}
@@ -147,18 +150,65 @@
     <script src="{{ asset('vendors/pdfmake/build/vfs_fonts.js')}}"></script>
     
 
-    {{-- <script>
-  
+  {{-- Sweet Alert --}}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
       $(function(){
 
-        $().DataTable({
-          "language": {
-              "url": "js/portugues.json"
-          }
-        });
+        $("body").on("click", ".btn-excluir", function(e){
+
+            // Evitar que a página recarregue
+            e.preventDefault();
+
+            //Obter os dados do funcionário
+            let id = $(this).data('id');
+            let nome = $(this).data('nome');
+
+            // Configuração do Sweet alert
+
+            swal({
+                title: "Atenção!",
+                text: "Você realmente deseja excluir o(a) funcionário(a) "+nome+" ?",
+                icon: "warning",
+                buttons: {
+                  cancel: {
+                    text: "Cancelar",
+                    value: "cancelar",
+                    visible: true,
+                    closeModal: true,
+                  },
+                  ok: {
+                    text: "Sim, exclua!",
+                    value: 'excluir',
+                    visible: true,
+                    closeModal: true,
+                  }
+                }
+            }).then(function(resultado){
+
+                if(resultado === 'excluir'){
+
+                    // Chamando a url /usuarios/id usando método DELETE e a token de segurança
+                    
+                    $.post("{{ url("/funcionarios/") }}/"+id, {
+                      id : id,
+                      _method : "DELETE",
+                      _token : "{{ csrf_token() }}",
+                    }).done(function(){
+
+                      //Recarregar a página
+                      location.reload();
+                    });
+
+                } 
+
+            });
+
+        });   
 
       });
-
-    </script> --}}
+       
+    </script>
 
 @endpush
