@@ -83,9 +83,7 @@
                           class="btn-excluir btn btn-danger btn-xs action  botao_acao"
                           data-id="{{$funcionario->id}}"
                           data-nome="{{ $funcionario->nome }}" 
-                          data-toggle="modal"
                           data-toggle="tooltip"
-                          data-target="#modalexcluir"
                           title="Excluir" 
                           href="#">
                           <i class="glyphicon glyphicon-remove "></i>

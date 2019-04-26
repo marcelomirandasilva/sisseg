@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <div class="title_left">
-    <h3> Lista de Administradores {{-- <small>Some examples to get you started</small> --}}</h3>
+    <h2> Lista de Administradores {{-- <small>Some examples to get you started</small> --}}</h2>
     <a class="btn btn-success title-right" style="margin-left: 90%;" href="{{ url ('usuarios/create')}}">Adicionar</a>
 </div>
 
@@ -58,9 +58,7 @@
                           class="btn-excluir btn btn-danger btn-xs action  pull-right  botao_acao " 
                           data-id="{{$usuario->id}}"
                           data-nome="{{ $usuario->name }}"
-                          data-toggle="tooltip"
-                          data-toggle="modal"
-                          data-target="#modalexcluir"                          
+                          data-toggle="tooltip"                      
                           title="Excluir" 
                           href="#">
                           <i class="glyphicon glyphicon-remove "></i>
