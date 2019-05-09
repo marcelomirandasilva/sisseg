@@ -56,25 +56,21 @@ $factory->define(App\Models\Endereco::class, function(Faker\Generator $faker) {
 $factory->define(App\Models\Funcionario::class, function(Faker\Generator $faker) {
 	$faker = Faker\Factory::create('pt_BR');
 
-    $setor      = App\Models\Setor::all()->random();
-    $id_setor   = $setor->id;
-    echo("setor: " .$id_setor);
-    echo("\n");
+	$setor      = App\Models\Setor::all()->random();
+	$id_setor   = $setor->id;
+	echo("setor: " .$id_setor);
+	echo("\n");
 
-    $secretaria = App\Models\Secretaria::find($setor->secretaria_id);
-    $id_secretaria  = $secretaria->id;
-    echo("secretaria: " .$id_secretaria);
-    echo("\n");
+	$secretaria = App\Models\Secretaria::find($setor->secretaria_id);
+	$id_secretaria  = $secretaria->id;
+	echo("secretaria: " .$id_secretaria);
+	echo("\n");
 
-    $cargo = App\Models\Cargo::where('secretaria_id', $id_secretaria)->inRandomOrder()->get();
-    $id_cargo  = $cargo[0]['id'];
+	$cargo = App\Models\Cargo::where('secretaria_id', $id_secretaria)->inRandomOrder()->get();
+	$id_cargo  = $cargo[0]['id'];
 
-    echo("cargo: " .$id_cargo);
-    echo("\n");
-
-
-    $role  = App\Models\Role::all()->random();
-    $id_role  = $role->id;
+	echo("cargo: " .$id_cargo);
+	echo("\n");
 
     // TIPO
 	$vetor = pegaValorEnum('funcionarios','tipo');
@@ -88,7 +84,8 @@ $factory->define(App\Models\Funcionario::class, function(Faker\Generator $faker)
 		'tipo'		    => $v_tipo,
 		'cargo_id'		=> $id_cargo,
 		'setor_id'		=> $id_setor,
-		'role_id'		=> $id_role,
+		'email' 	    => $faker->unique()->email,
+		'password'      => bcrypt('secret')
 	];
 });
 

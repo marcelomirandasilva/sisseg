@@ -14,13 +14,20 @@ class Role extends Model  //implements AuditableContract
     protected $fillable = [
     	'acesso',
      	'peso',
+		'nome',
+		'sistema_id'
     ];
 
     // Relacionamentos
 
   	public function funcionarios()
  	{
-        return $this->hasMany('App\Models\Funcionario');
+        return $this->belongsToMany('App\Models\Funcionario');
+ 	}
+	  
+	public function sistema()
+ 	{
+		return $this->belongsTo('App\Models\Sistema');
  	}
 
 

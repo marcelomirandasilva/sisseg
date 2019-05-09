@@ -32,7 +32,7 @@ class UsuarioController extends Controller
         return view('usuarios.index', compact('nome_usuario', 'foto_usuario', 'usuarios'));
             }
 
-    /**
+    /** 
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

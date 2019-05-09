@@ -12,201 +12,201 @@
 		<div class="x_content">
 
 			<form method="POST" action="{{ url("funcionarios") }}" aria-label="{{ ('Register') }}">
-                        @csrf
+					@csrf
 
-                        <div class="form-group row">
-                            <label for="Nome" class="col-md-2 col-form-label text-md-right">{{ __('Nome') }}</label>
+					<div class="form-group row">
+						<label for="Nome" class="col-md-2 col-form-label text-md-right">{{ __('Nome') }}</label>
 
-                            <div class="col-md-7">
-                                <input id="Nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ old('nome') }}" required autofocus>
+						<div class="col-md-7">
+							<input id="Nome" type="text" class="form-control{{ $errors->has('nome') ? ' is-invalid' : '' }}" name="nome" value="{{ old('nome') }}" required autofocus>
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+							@if ($errors->has('name'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('name') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('Email') }}</label>
+					<div class="form-group row">
+						<label for="email" class="col-md-2 col-form-label text-md-right">{{ __('Email') }}</label>
 
-                            <div class="col-md-7">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+						<div class="col-md-7">
+							<input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+							@if ($errors->has('email'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('email') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Senha') }}</label>
+					<div class="form-group row">
+						<label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Senha') }}</label>
 
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+						<div class="col-md-7">
+							<input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+							@if ($errors->has('password'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('password') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirmar Senha') }}</label>
+					<div class="form-group row">
+						<label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirmar Senha') }}</label>
 
-                            <div class="col-md-7">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row">
-                            <label for="secretaria" class="col-md-2 col-form-label text-md-right">{{ __('Secretaria') }}</label>
+						<div class="col-md-7">
+							<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label for="secretaria" class="col-md-2 col-form-label text-md-right">{{ __('Secretaria') }}</label>
 
-                            <div class="col-md-7">
-                                <select id="secretaria" class="form-control{{ $errors->has('secretaria') ? ' is-invalid' : '' }}" name="secretaria_id" required autofocus>
-                                    <option value="">Selecione uma Secretaria...</option>
-                                        
-                                    @foreach($secretarias as $secretaria)
+						<div class="col-md-7">
+							<select id="secretaria" class="form-control{{ $errors->has('secretaria') ? ' is-invalid' : '' }}" name="secretaria_id" required autofocus>
+									<option value="">Selecione uma Secretaria...</option>
+										
+									@foreach($secretarias as $secretaria)
 
-                                         <option value="{{$secretaria->id}}">{{$secretaria->nome}}</option>
+										<option value="{{$secretaria->id}}">{{$secretaria->nome}}</option>
 
-                                    @endforeach
-        
-                                </select>
+									@endforeach
 
-                                @if ($errors->has('secretaria'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('secretaria') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+							</select>
 
-                        <div class="form-group row">
-                            <label for="setor" class="col-md-2 col-form-label text-md-right">{{ __('Setor') }}</label>
+							@if ($errors->has('secretaria'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('secretaria') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                            <div class="col-md-7">
-                                <select id="setor" class="form-control{{ $errors->has('setor') ? ' is-invalid' : '' }}" name="setor_id" autofocus>
-                                    
-                                    <option value="">Selecione um Setor...</option>
+					<div class="form-group row">
+						<label for="setor" class="col-md-2 col-form-label text-md-right">{{ __('Setor') }}</label>
 
-                                </select>
+						<div class="col-md-7">
+							<select id="setor" class="form-control{{ $errors->has('setor') ? ' is-invalid' : '' }}" name="setor_id" autofocus>
+									
+									<option value="">Selecione um Setor...</option>
 
-                                @if ($errors->has('setor'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('setor') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+							</select>
 
-                        <div class="form-group row">
-                            <label for="cargo" class="col-md-2 col-form-label text-md-right">{{ __('Cargo') }}</label>
+							@if ($errors->has('setor'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('setor') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                            <div class="col-md-7">
-                                <select id="cargo" class="form-control{{ $errors->has('cargo') ? ' is-invalid' : '' }}" name="cargo_id"required autofocus>
+					<div class="form-group row">
+						<label for="cargo" class="col-md-2 col-form-label text-md-right">{{ __('Cargo') }}</label>
 
-                                    <option value="">Selecione um Cargo...</option>
-                                  
-                                </select>
+						<div class="col-md-7">
+							<select id="cargo" class="form-control{{ $errors->has('cargo') ? ' is-invalid' : '' }}" name="cargo_id"required autofocus>
 
-                                @if ($errors->has('cargo'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('cargo') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+									<option value="">Selecione um Cargo...</option>
+								
+							</select>
 
-                        <div class="form-group row">
-                            <label for="tipo" class="col-md-2 col-form-label text-md-right">{{ __('Tipo') }}</label>
+							@if ($errors->has('cargo'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('cargo') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
 
-                            <div class="col-md-7">
-                                <select id="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}" name="tipo" required autofocus>
-                                    <option value="">Selecione um Tipo...</option>
-                                        
-                                    @foreach($tipos as $tipo)
+					<div class="form-group row">
+						<label for="tipo" class="col-md-2 col-form-label text-md-right">{{ __('Tipo') }}</label>
 
-                                         <option value="{{$tipo}}">{{$tipo}}</option>
+						<div class="col-md-7">
+							<select id="tipo" class="form-control{{ $errors->has('tipo') ? ' is-invalid' : '' }}" name="tipo" required autofocus>
+									<option value="">Selecione um Tipo...</option>
+										
+									@foreach($tipos as $tipo)
 
-                                    @endforeach
-        
-                                </select>
+										<option value="{{$tipo}}">{{$tipo}}</option>
 
-                                @if ($errors->has('tipo'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tipo') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        
-                        {{-- <div class="form-group row">
-                            <label for="sistema" class="col-md-2 col-form-label text-md-right">{{ __('Sistemas') }}</label>
+									@endforeach
 
-                            <div class="col-md-3 div-select">
-                                <select id="sistema" class=" select2_group form-control{{ $errors->has('sistema') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
-                                        
-                                    <option value="">Selecione um Sistema...</option>
+							</select>
 
-                                    @foreach($sistemas as $sistema)
+							@if ($errors->has('tipo'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('tipo') }}</strong>
+									</span>
+							@endif
+						</div>
+					</div>
+					
+					{{-- <div class="form-group row">
+						<label for="sistema" class="col-md-2 col-form-label text-md-right">{{ __('Sistemas') }}</label>
 
-                                         <option value="{{$sistema->id}}">{{$sistema->nome}}</option>
+						<div class="col-md-3 div-select">
+							<select id="sistema" class=" select2_group form-control{{ $errors->has('sistema') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
+										
+									<option value="">Selecione um Sistema...</option>
 
-                                    @endforeach
+									@foreach($sistemas as $sistema)
 
-                                </select>
+										<option value="{{$sistema->id}}">{{$sistema->nome}}</option>
 
-                                @if ($errors->has('sistema'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sistema') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+									@endforeach
 
-                            <label for="role" class="col-md-1 col-form-label text-md-right">{{ __('Role') }}</label>
+							</select>
 
-                            <div class="col-md-3 div-select">
-                                <select id="role" class="select2_group form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
-                                        
-                                    <option value="">Selecione uma Role...</option>
+							@if ($errors->has('sistema'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('sistema') }}</strong>
+									</span>
+							@endif
+						</div>
 
-                                    {{-- @foreach($roles as $role)
+						<label for="role" class="col-md-1 col-form-label text-md-right">{{ __('Role') }}</label>
 
-                                         <option value="{{$role->id}}">{{$role->nome}}</option>
+						<div class="col-md-3 div-select">
+							<select id="role" class="select2_group form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" name="sistema" required autofocus>>
+										
+									<option value="">Selecione uma Role...</option>
 
-                                    @endforeach
+									{{-- @foreach($roles as $role)
 
-                                </select>
+										<option value="{{$role->id}}">{{$role->nome}}</option>
 
-                                @if ($errors->has('role'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('role') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+									@endforeach
 
-                             <div class="col-md-3">
-                            <a href="#" class="btn btn-info btn-nova-linha btn-cor-padrao"> <i class="fa fa-plus"></i> </a>
-                            </div>
+							</select>
 
-                        </div>
- --}} 
+							@if ($errors->has('role'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('role') }}</strong>
+									</span>
+							@endif
+						</div>
+
+						<div class="col-md-3">
+						<a href="#" class="btn btn-info btn-nova-linha btn-cor-padrao"> <i class="fa fa-plus"></i> </a>
+						</div>
+
+					</div>
+--}} 
 
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-5 offset-md-4" style="margin-left: 174px;">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Cadastrar') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+					<div class="form-group row mb-0">
+						<div class="col-md-5 offset-md-4" style="margin-left: 174px;">
+							<button type="submit" class="btn btn-primary">
+									{{ __('Cadastrar') }}
+							</button>
+						</div>
+					</div>
+			</form>
 
 		</div>
 
@@ -216,59 +216,59 @@
 
 @push('scripts')
 
-    <script>
+	<script>
 
-        $(function(){
+		$(function(){
 
-            // Fazer a chamada no evento CHANGE do select de secretarias
+				// Fazer a chamada no evento CHANGE do select de secretarias
 
-            $("select#secretaria").change(function(){
-                
-                // Guardar o id da secretaria em uma variável
-                let secretaria_id = $(this).val();
+				$("select#secretaria").change(function(){
+					
+					// Guardar o id da secretaria em uma variável
+					let secretaria_id = $(this).val();
 
-                // Fazer a chamada para a API usando o valor do ID
-                $.get("/api/setoresporsecretaria/" + secretaria_id, function(resultados){
+					// Fazer a chamada para a API usando o valor do ID
+					$.get("/api/setoresporsecretaria/" + secretaria_id, function(resultados){
 
-                    // Deletar todas as options
-                    $("select#setor").empty();
+						// Deletar todas as options
+						$("select#setor").empty();
 
-                    // Adicionar a opção "Selecione..."
-                    $("select#setor").append(`<option value=''>Selecione um Setor...</option>`); 
-                    
-                    // Iterar por todos os resultados e chamar a função passando o índice e o valor
-                    $.each(resultados, function(indice, valor){
-                        
-                        // Selectionar o Select de Setores e adicionar um option para cada valor
-                        $("select#setor").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
+						// Adicionar a opção "Selecione..."
+						$("select#setor").append(`<option value=''>Selecione um Setor...</option>`); 
+						
+						// Iterar por todos os resultados e chamar a função passando o índice e o valor
+						$.each(resultados, function(indice, valor){
+								
+								// Selectionar o Select de Setores e adicionar um option para cada valor
+								$("select#setor").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
 
-                    });
+						});
 
-                });
+					});
 
-                   $.get("/api/cargosporsecretaria/" + secretaria_id, function(resultados){
-                    
-                    // Deletar todas as options
-                    $("select#cargo").empty();
+						$.get("/api/cargosporsecretaria/" + secretaria_id, function(resultados){
+						
+						// Deletar todas as options
+						$("select#cargo").empty();
 
-                    // Adicionar a opção "Selecione..."
-                    $("select#cargo").append(`<option value=''>Selecione um Cargo...</option>`); 
-                    
-                    // Iterar por todos os resultados e chamar a função passando o índice e o valor
-                    $.each(resultados, function(indice, valor){
-                        
-                        // Selectionar o Select de cargos e adicionar um option para cada valor
-                        $("select#cargo").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
+						// Adicionar a opção "Selecione..."
+						$("select#cargo").append(`<option value=''>Selecione um Cargo...</option>`); 
+						
+						// Iterar por todos os resultados e chamar a função passando o índice e o valor
+						$.each(resultados, function(indice, valor){
+								
+								// Selectionar o Select de cargos e adicionar um option para cada valor
+								$("select#cargo").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
 
-                    });
+						});
 
-                });
+					});
 
-            });      
+				});      
 
-            
-        });
+				
+		});
 
-    </script>
+	</script>
 
 @endpush

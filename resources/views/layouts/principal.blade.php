@@ -5,18 +5,18 @@
 		<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
 		<link rel="icon" type="image/png" href="../assets/img/favicon.png">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<title> 
-			SISSEG |  @section('titulo') @show 
+		<title>
+			SISSEG |  @section('titulo') @show
 		</title>
-		
+
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	
+
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-	
+
 		<!--  Material styles CSS    -->
 		<link href="{{asset('css/material-dashboard.css')}}" rel="stylesheet" />
-		
+
 		<!--  ANIMATE styles CSS    -->
 		<link href="{{ asset('css/animate.css') }}" rel="stylesheet" />
 
@@ -41,14 +41,14 @@
 	<body class="">
 		<div class="wrapper ">
 			@include('layouts.sidebar')
-			
+
 			<div class="main-panel">
 				@include('layouts.topbar')
-				
+
 				<div class="content">
 					@yield("content")
 				</div>
-				
+
 				@include('layouts.footer')
 			</div>
 	</div>
@@ -155,7 +155,7 @@
 				</ul>
 			</div>
 		</div>
-		
+
 		<!--   Core JS Files   -->
 		<script src="{{asset('js/core/jquery.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('js/core/popper.min.js')}}" type="text/javascript"></script>
@@ -197,15 +197,15 @@
 		<script src="{{asset('js/plugins/bootstrap-notify.js')}}"></script>
 		<!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 		<script src="{{asset('js/material-dashboard.min.js?v=2.0.2')}}" type="text/javascript"></script>
-		
+
 		<!-- Material Dashboard DEMO methods, dont include it in your project! -->
 		<script src="{{asset('js/demo.js')}}"></script>
-		
+
 
 		<script src="{{asset('js/scripts.js')}}"></script>
 
 		@stack('scripts')
-			
+
 	</body>
 
 </html>

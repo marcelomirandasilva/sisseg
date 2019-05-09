@@ -16,6 +16,11 @@ class UsersSeeder extends Seeder
 													'email' 		=> 'marcelo.miranda@mesquita.rj.gov.br',
 													'password'  =>  '$2y$10$IV5BxV2wXnW7yswbZPnbd.QJTqUYL2Zkwq972PQXCxOlXfIdIbGUC'
 												]);
+
+			DB::table('users')->insert([	'name' 		=> 'Administrador',
+				'email' 		=> 'gesol@mesquita.rj.gov.br',
+				'password'  =>  '$2y$10$IV5BxV2wXnW7yswbZPnbd.QJTqUYL2Zkwq972PQXCxOlXfIdIbGUC'
+			]);
 			
 
 

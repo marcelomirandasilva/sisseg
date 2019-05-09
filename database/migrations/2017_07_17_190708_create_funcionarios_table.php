@@ -20,7 +20,7 @@ class CreateFuncionariosTable extends Migration
             $table->mediumText('avatar')->nullable();
             $table->rememberToken();
 
-            $table->string('nome');                
+            $table->string('nome');
             $table->char('cpf',14)                          ->nullable();
             $table->string('matricula', 12)                 ->nullable();
             $table->mediumtext('foto')                      ->nullable();
@@ -35,10 +35,10 @@ class CreateFuncionariosTable extends Migration
             $table->timestamps();
         });
 
-        
+
         //para usar com postgres
-        /*DB::statement(" 
-            ALTER TABLE funcionarios 
+        /*DB::statement("
+            ALTER TABLE funcionarios
 	            ALTER COLUMN tipo DROP DEFAULT,
 	            ALTER COLUMN tipo type tp_tipo_funcionario USING (tipo::tp_tipo_funcionario),
 	            ALTER COLUMN tipo SET DEFAULT 'Efetivo'
@@ -46,7 +46,6 @@ class CreateFuncionariosTable extends Migration
 
         Schema::table('funcionarios', function($table){
             $table->foreign('setor_id')->references('id')->on('setores')->onDelete('cascade');
-            $table->foreign('role_id') ->references('id')->on('roles')  ->onDelete('cascade');            
             $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
         });
     }
@@ -59,7 +58,7 @@ class CreateFuncionariosTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        
+
         Schema::dropIfExists('funcionarios');
     }
 }
