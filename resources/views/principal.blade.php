@@ -18,22 +18,27 @@
     <link href="{{ asset('vendors/nprogress/nprogress.css') }}" rel="stylesheet">
     <!-- iCheck -->
     <link href="{{ asset('vendors/iCheck/skins/flat/green.css') }}" rel="stylesheet">
-	
+
     <!-- bootstrap-progressbar -->
     <link href="{{ asset('vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet">
     <!-- JQVMap -->
     <link href="{{ asset('vendors/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-
+    
+    <!-- sweetalert2 -->
+    <link href="{{ asset('vendors/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet">
+    
     <!-- Custom Theme Style -->
     <link href="{{ asset('build/css/custom.min.css')}}" rel="stylesheet">
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   </head>
 
   <body class="nav-md" style="color: #000;">
     <div class="container body">
       <div class="main_container">
-        
+
         @include('includes.menu')
 
         @include('includes.topbar')
@@ -46,7 +51,7 @@
         </div>
 
           @include('includes.footer')
-       
+
       </div>
     </div>
 
@@ -87,13 +92,26 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    
+    <!-- sweetalert2 -->
+    <script src="{{ asset('vendors/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
+
+    <script src="{{ asset('js/notify.js') }}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{ asset('build/js/custom.js') }}"></script>
 
+    
+		<script>
+      //variáveis globais ao sistema
+      let url_base       = "{{ url("/") }}"; 
+      let token          = "{{ csrf_token() }}";
+    </script>   
+
+  
     @stack('scripts')
 
-    
-    
+
+
   </body>
 </html>

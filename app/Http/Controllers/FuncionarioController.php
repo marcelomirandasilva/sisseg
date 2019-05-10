@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use App\Models\Funcionario;
 use App\Models\Secretaria;
 use App\Models\Cargo;
 use App\Models\Setor;
 use App\Models\Sistema;
+use Illuminate\Validation\Rule;
 
 class FuncionarioController extends Controller
 {
@@ -84,6 +87,7 @@ class FuncionarioController extends Controller
         $this->validate($request, [
             'nome' => 'required',
             'email' => 'required|email',
+            'cpf' => 'required',
             'password' => 'required|min:5|same:password_confirmation',
             'password_confirmation' => 'required|min:5',
             'cargo_id' => 'required',

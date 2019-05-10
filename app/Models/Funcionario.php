@@ -70,9 +70,9 @@ class Funcionario extends Authenticatable
         return $this->hasMany('App\Models\Sys_log');
     }        
 
-    public function role()
+    public function roles()
     {
-      return $this->belongsTo('App\Models\Role');
+      return $this->belongsToMany('App\Models\Role');
     }
 
     public function atribuicoes()
