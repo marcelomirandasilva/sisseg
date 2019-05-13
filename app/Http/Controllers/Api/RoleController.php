@@ -17,4 +17,14 @@ class RoleController extends Controller
         return sizeof($existe);
 
     }
+
+    public function verificaRoleFuncionario(Request $request){
+
+        $sistema = Sistema::where('nome', '=', $request->sistema)->first();
+        $existe  = Role::where('nome', '=', $request->role)->where('sistema_id', '=', $sistema->id)->get();
+        
+        return sizeof($existe);
+        //return $existe;
+
+    }
 }

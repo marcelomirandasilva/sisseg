@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Funcionario;
 use App\Models\Sistema;
 use App\Models\Role;
+
 
 class RoleController extends Controller
 {
@@ -16,6 +18,15 @@ class RoleController extends Controller
  */
 	public function index()
 	{
+
+		$retorno = DB::select("select consulta_role(69, 'SGF', 'FISCAL') as retorno");
+
+		//$func = Funcionario::find(69)->roles()->get();
+
+		//dd($retorno[0]->retorno);
+
+
+		
 
 		$roles 		= Role::all();
 		$sistemas = Sistema::all()->sortBy('nome');

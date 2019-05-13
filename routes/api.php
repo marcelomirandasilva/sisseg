@@ -43,3 +43,6 @@ Route::get("/verificaSistemaExiste/{sistema}", "Api\SistemaController@verificaSi
 /// rota para verificar se o NOME DA ROLE já existe em determinado SISTEMA
 Route::get("/verificaRoleExiste/{sistema}/{role}", "Api\RoleController@verificaRoleExiste");
 
+
+Route::post("/verificaRoleFuncionario", "Api\RoleController@verificaRoleFuncionario");
+

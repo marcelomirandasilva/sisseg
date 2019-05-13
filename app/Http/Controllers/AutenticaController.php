@@ -16,6 +16,8 @@ class AutenticaController extends Controller
 
    public function login(Request $request)
    {
+  
+
       if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
       {
          // verifica se foi efetuado o login por um FUNCIONARIO DO GESOL
