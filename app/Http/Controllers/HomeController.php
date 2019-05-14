@@ -26,9 +26,8 @@ class HomeController extends Controller
     {
         // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
 
         // Chamar a view passando a variável para ela
-        return view('home', compact('nome_usuario', 'foto_usuario'));
+        return view('home', compact('nome_usuario'));
     }
 }

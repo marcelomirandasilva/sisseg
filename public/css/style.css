@@ -5,3 +5,8 @@
     vertical-align: middle !important;
 }
 
+.dataTables_filter {
+    width: 100%!important; 
+    float: right;
+    text-align: right;
+}
