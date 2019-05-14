@@ -43,6 +43,13 @@
 					</div>
 
 					<div class="form-group row">
+	      				<label class="col-md-2 col-form-label text-md-right" for="cpf">CPF</label>
+	         				<div class="col-md-7">
+	         					<input type="cpf" id="cpf" class="form-control" name="cpf">
+	         				</div>
+      		  		</div>
+
+					<div class="form-group row">
 						<label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Senha') }}</label>
 
 						<div class="col-md-7">
@@ -216,6 +223,9 @@
 
 @push('scripts')
 
+	{{-- Vanilla Masker --}}
+	<script src="{{ asset('js/vanillaMasker.min.js') }}"></script>
+
 	<script>
 
 		$(function(){
@@ -266,8 +276,10 @@
 
 				});      
 
-				
+				VMasker ($("#cpf")).maskPattern("999.999.999-99");
 		});
+
+		
 
 	</script>
 

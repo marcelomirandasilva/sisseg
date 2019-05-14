@@ -71,7 +71,7 @@
 
                             <div class="col-md-7">
                                 <select id="secretaria" class="form-control{{ $errors->has('secretaria') ? ' is-invalid' : '' }}" name="secretaria_id" required autofocus>
-                                    <option value="{{ $funcionario->secretaria_id->nome or old('secretaria_id->nome') }}">{{ $funcionario->secretaria_id->nome or old('secretaria->nome') }}</option>
+                                     <option value="{{ $funcionario->setor->secretaria->nome or old('secretaria->nome') }}">{{ $funcionario->setor->secretaria->nome or old('secretaria->nome') }}</option>
                                         
                                     @foreach($secretarias as $secretaria)
 

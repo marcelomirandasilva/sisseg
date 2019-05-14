@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
+#use OwenIt\Auditing\Contracts\Auditable;
+use OwenIt\Auditing\Contracts\UserResolver;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Notifications\enviaEmaildeDefinicaodeSenha;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 #use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 
-class Funcionario extends Model 
+class Funcionario extends Authenticatable 
 {
     #use \OwenIt\Auditing\Auditable;
 
@@ -20,8 +28,14 @@ class Funcionario extends Model
         'setor_id',
         'role_id',
         'cargo_id',
-        'tipo'
+        'tipo',
+        'password',
+        'email'
 
+    ];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
     // Relacionamentos
@@ -77,6 +91,9 @@ class Funcionario extends Model
 
     }
 
-
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
 
 }
