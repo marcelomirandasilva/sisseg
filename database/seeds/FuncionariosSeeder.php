@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Funcionario;
-use App\Models\Cargo;
-use App\Models\Setor;
 use App\Models\Secretaria;
 
 class FuncionariosSeeder extends Seeder

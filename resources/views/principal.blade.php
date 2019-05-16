@@ -29,8 +29,29 @@
 		<!-- sweetalert2 -->
 		<link href="{{ asset('vendors/sweetalert2/dist/sweetalert2.css')}}" rel="stylesheet">
 		
+		<!--     Fonts and icons     -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet">
+	
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		
+		
+		
+			<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/dt-1.10.18/r-2.2.2/datatables.min.css"/>
+	
+			
+			
+		
+			
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/timepicker@1.11.14/jquery.timepicker.min.css">       
+
+			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+			
+	
+		
 		<!-- Custom Theme Style -->
 		<link href="{{ asset('build/css/custom.min.css')}}" rel="stylesheet">
+
+		{{-- datatables --}}
 
 		<link href="{{ asset('css/style.css') }}" rel="stylesheet">
 	</head>
@@ -93,14 +114,6 @@
 		<script src="{{ asset('vendors/moment/min/moment.min.js') }}"></script>
 		<script src="{{ asset('vendors/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
-		<!-- Datatables -->
-	 
-		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/af-2.3.0/b-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js"></script>
-
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"    type="text/javascript"></script>
-		<script src="http://cdn.datatables.net/plug-ins/1.10.15/sorting/datetime-moment.js"  type="text/javascript"></script>
-	
-		
 		<!-- sweetalert2 -->
 		<script src="{{ asset('vendors/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
 
@@ -110,10 +123,44 @@
 		<script src="{{ asset('build/js/custom.js') }}"></script>
 
 		
-			<script>
+		<!-- Datatables -->
+		<!-- Datatables -->
+		<script type="text/javascript"
+			src="https://cdn.datatables.net/v/bs/dt-1.10.18/af-2.3.0/b-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js">
+		</script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" type="text/javascript"></script>
+		<script src="http://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js" type="text/javascript"></script>
+			
+
+		<script src="{{ asset('/js/funcoes.js')}}"></script>
+
+		
+		<script>
 			//variáveis globais ao sistema
 			let url_base       = "{{ url("/") }}"; 
 			let token          = "{{ csrf_token() }}";
+
+			//mensagens de sucesso
+			@if (session('sucesso'))
+				$.notify("{{ session('sucesso') }}", "success");
+			@endif
+
+			//mensagem para os erros de acesso pela ACL
+			@if (session('error'))
+				$.notify("{{ session('error') }}", "warn");
+			@endif
+			
+
+			// Testar se há algum erro, e mostrar a notificação 
+			var tempo = 0;
+			var incremento = 500;
+			@if ($errors->any())
+				@foreach ($errors->all() as $error)
+					setTimeout(function(){funcoes.notificationRight("top", "right", "danger", "{{ $error }}"); }, tempo);
+					tempo += incremento;
+				@endforeach
+			@endif
+
 		</script>   
 
 

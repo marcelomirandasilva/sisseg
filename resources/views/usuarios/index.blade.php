@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="x_content">
-			<table id="tabela" class="table table-striped table-bordered">
+			<table id="tbl_funcionarios" class="table table-striped table-bordered">
 				<thead>
 					<tr>
 						<th>Nome</th>
@@ -66,12 +66,13 @@
 
 @push('scripts')
 	
+
 	<script>
+		
 		$(function(){
 			//configuração da tabela       
-			$.fn.dataTable.moment( 'DD/MM/YYYY' );
 			
-			var tabela = $("#tabela").DataTable({
+			var tabela = $("#tbl_funcionarios").DataTable({
 				language : {
 					'url' : '{{ asset('js/portugues.json') }}',
 					"decimal": ",",

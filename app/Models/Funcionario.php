@@ -30,8 +30,14 @@ class Funcionario extends Authenticatable
         'cargo_id',
         'tipo',
         'password',
-        'email'
-
+        'email',
+        'secretaria_id',
+        'status',
+        'motorista',
+        'celular',
+        'cnh',
+        'categoria_cnh',
+        'validade_cnh'
     ];
 
     protected $hidden = [
@@ -40,29 +46,10 @@ class Funcionario extends Authenticatable
 
     // Relacionamentos
 
-    public function setor()
-    {
-    	return $this->belongsTo('App\Models\Setor');
-    }
 
     public function user()
     {
     	return $this->hasOne('App\Models\User');
-    }
-
-    public function comentarios()
-    {
-        return $this->hasMany('App\Models\Comentario');
-    }
-    
-    public function movimentos()
-    {
-        return $this->hasMany('App\Models\Movimento');
-    }        
-
-    public function cargo()
-    {
-        return $this->belongsTo('App\Models\Cargo','cargo_id');
     }
 
     public function sys_logs()
@@ -75,25 +62,10 @@ class Funcionario extends Authenticatable
       return $this->belongsToMany('App\Models\Role');
     }
 
-    public function atribuicoes()
+    public function secretaria()
     {
-      return $this->belongsToMany('App\Models\Atribuicao', 'atribuicao_funcionario');
-    }
-   
-    public function relatorios_semsop()
-    {
-    	return $this->belongsToMany('App\Models\Semsop_relatorio', 'semsop_funcionarios_relatorios')->withPivot('relator')->withTimestamps();
+      return $this->belongsTo('App\Models\Secretaria');
     }
 
-    public function relatorios_semus()
-    {
-        return $this->hasMany('App\Models\Semus_relatorio');
-
-    }
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 
 }

@@ -2,7 +2,6 @@
 
 @section('conteudo') 
 	<div class="x_panel">
-		<!-- page content -->
 		<div class="x_title">
 			<h2> Roles </h2>
 			<a href="{{ url('roles/create') }}" class="btn-circulo btn  btn-success btn-md  pull-right "
@@ -65,12 +64,7 @@
 @endsection
 	 
 @push('scripts')
-	<!-- Datatables -->
-	<script type="text/javascript"
-		src="https://cdn.datatables.net/v/bs/dt-1.10.18/af-2.3.0/b-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js">
-	</script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js" type="text/javascript"></script>
-	<script src="http://cdn.datatables.net/plug-ins/1.10.19/sorting/datetime-moment.js" type="text/javascript"></script>
+	
 	<script>
 		$(document).ready(function(){
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );

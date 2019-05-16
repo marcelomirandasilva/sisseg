@@ -10,3 +10,10 @@
     float: right;
     text-align: right;
 }
+
+.form-control:focus {
+    border-color:#66afe9 !important;
+    -webkit-box-shadow: 2px 4px 20px -3px rgb(110, 17, 22) !important;
+    -moz-box-shadow:    2px 4px 20px -3px rgb(110, 17, 22 !important;
+    box-shadow:         2px 4px 20px -3px rgb(110, 17, 22 !important;
+}

@@ -19,9 +19,9 @@ class CreateRolesTable extends Migration
             $table->string('nome');
 
             $table->string('acesso')->nullable();
-            $table->integer('peso')->nullable();
 
             $table->integer('sistema_id')->unsigned();
+
             $table->foreign('sistema_id')->references('id')->on('sistemas')->onDelete('cascade');
 
             $table->timestamps();

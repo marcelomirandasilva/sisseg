@@ -13,186 +13,245 @@ use App\Models\Setor;
 use App\Models\Sistema;
 use Illuminate\Validation\Rule;
 
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EnviaSenha;
+
 class FuncionarioController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-         // Armazenando o nome do usuário logado na variável $nome_usuario
-        $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	/**
+	 * Display a listing of the resource.
+	*
+	* @return \Illuminate\Http\Response
+	*/
+	public function index()
+	{
+			// Armazenando o nome do usuário logado na variável $nome_usuario
+		$nome_usuario = Auth::user()->name;
+		$foto_usuario = "images/brasao.png";
 
-        //Obter todos as funcionarios do banco de dados
+		//Obter todos as funcionarios do banco de dados
 
-        $funcionarios = Funcionario::all();
-        // dd($funcionarios);
+		$funcionarios = Funcionario::all();
+		// dd($funcionarios);
 
-        // Chamar a view passando a variável para ela
-        return view('funcionarios.index', compact('nome_usuario', 'foto_usuario', 'funcionarios'));
-    }
+		// Chamar a view passando a variável para ela
+		return view('funcionarios.index', compact('nome_usuario', 'foto_usuario', 'funcionarios'));
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // Armazenando o nome do usuário logado na variável $nome_usuario
-        $nome_usuario = Auth::user()->name;
-        $foto_usuario = asset("images/brasao.png");
+	public function create()
+	{
+		$titulo = "Cadastro de Funcionarios";
+		$secretarias = Secretaria::all();
+		
+		$tipos = pegaValorEnum('funcionarios', 'tipo');
 
-        //Obter todos as secretarias do banco de dados
+		return view('funcionarios.create', compact('titulo', 'secretarias', 'tipos'));
+	}
 
-        $secretarias = Secretaria::all();
-        // dd($secretarias);
+	/**
+	 * Store a newly created resource in storage.
+	*
+	* @param  \Illuminate\Http\Request  $request
+	* @return \Illuminate\Http\Response
+	*/
+	public function store(Request $request)
+	{
+		//dd($request->all());
+		
+		// Validar os campos
+		$this->validate($request, [
+				'nome' => 'required',
+				'email' => 'email',
+				'cpf' => 'required',
+				'tipo' => 'required',
+				'secretaria_id' => 'required',
+		]);
 
-         //Obter todos os sistemas do banco de dados
-        // $sistemas = Sistema::all();
-        // dd($sistemas);
+		$request->merge(['motorista' 		=> str_replace('on', "1", $request->motorista)]);
 
-         //Obter todos os cargos do banco de dados
+		if( $request->email){
+			$senha_gerada       = str_random(6);
+		}else{
+			$cpf = retiraMascaraCPF($request->cpf);
+			$senha_gerada       = $cpf;
+		}
+		$request->merge(['password' => bcrypt($senha_gerada)]);
 
-        $cargos = Cargo::all();
+		try {
+				$novo_funcionario = Funcionario::create($request->all());
+		
+		} catch (\Illuminate\Database\QueryException $exception) {
+				// You can check get the details of the error using `errorInfo`:
+				$errorInfo = $exception->errorInfo;
+		
+				DB::rollBack();
+				if($errorInfo[0] = 2300){
+					return back()->withInput()->with('error', 'Falha ao criar o Funcionário. Email já está cadastrado');  
+				}
+			return back()->withInput()->with('error', 'Falha ao criar o Funcionário. cod:'. $errorInfo[0]);  
+		}
 
-        //Obter todos os tipos do banco de dados
+		if($novo_funcionario){
+		
+			DB::commit();
+			//se tiver email cadastrado envia a ele a senha gerada
+			if( $request->email){
+				Mail::to($request->email)->send(new EnviaSenha($novo_funcionario, $senha_gerada));
+				}
 
-        $tipos = pegaValorEnum('funcionarios', 'tipo');
+				return redirect('funcionarios')->with('sucesso', 'Usuario criado com sucesso!');
+		} else {
+			//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return back()->withInput()->with('error', 'Falha ao criar o Usuario.');    
+		}
+		
+	}
 
-        return view('funcionarios.create', compact('nome_usuario', 'foto_usuario', 'secretarias', 'cargos', 'tipos'));
-    }
+	public function edit($id)
+	{
+		$funcionario = Funcionario::find($id);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        // dd($request->all());
-        // Armazenando o nome do usuário logado na variável $nome_usuario
-        $nome_usuario = Auth::user()->name;
-        $foto_usuario = asset("images/brasao.png");
+		$titulo = "Edição de Funcionarios";
+		$secretarias = Secretaria::all();
+		
+		$tipos = pegaValorEnum('funcionarios', 'tipo');
 
-        // Validar os campos
-        $this->validate($request, [
-            'nome' => 'required',
-            'email' => 'required|email',
-            'cpf' => 'required',
-            'password' => 'required|min:5|same:password_confirmation',
-            'password_confirmation' => 'required|min:5',
-            'cargo_id' => 'required',
-            'tipo' => 'required',
-            'setor_id' => 'required',
-            'secretaria_id' => 'required',
-            
-        ]);
+		return view('funcionarios.create', compact('funcionario', 'titulo', 'secretarias', 'tipos'));         
+	}
 
-        $novo_funcionario = Funcionario::create($request->all());
 
-        return redirect('funcionarios');
-    }
+	public function update(Request $request, $id)
+	{
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+		$this->validate($request, [
+			'nome' => 'required',
+			'email' => 'email|max:255|unique:funcionarios,email,'.$id,
+			'cpf' => 'required',
+			'tipo' => 'required',
+			'secretaria_id' => 'required',
+			
+		]);
+			
+		$request->merge(['motorista' 		=> str_replace('on', "1", $request->motorista)]);
+		
+		// Procurar o funcionario pelo id
+		$funcionario = Funcionario::find($id);
+		
+		// Preencher os campos dele com os valores novos
+		$funcionario->fill($request->all());
+		
+		
+		dd($funcionario);
+		$funcionario->save();
+		
+		
+		if($funcionario){
+			DB::commit();
+			return redirect('funcionarios')->with('sucesso', 'Funcionario Editado com sucesso!');
+		} else {
+			//Fail, desfaz as alterações no banco de dados
+			DB::rollBack();
+			return back()->withInput()->with('error', 'Falha ao Editar o Funcionario.');    
+		}
+	
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-         // Armazenando o nome do usuario logado na variável $nome_usuario
-        $nome_usuario = Auth::user()->name;
-        $foto_usuario = asset("images/brasao.png");
+	}
 
-         $funcionario = Funcionario::find($id);
-         // dd($funcionario);
-         //Obter todos as secretarias do banco de dados
 
-        $secretarias = Secretaria::all();
-        // dd($secretarias);
+	public function destroy($id)
+	{
+		$funcionario = Funcionario::find($id);
+		
+		$funcionario->delete();
+	}
 
-         //Obter todos os setores do banco de dados
-        $setores = Setor::all();
-        // dd($setores);
 
-         //Obter todos os sistemas do banco de dados
-        // $sistemas = Sistema::all();
-        // dd($sistemas);
+/* ================================================================== */
+/* ================================================================== */
+/* ================================================================== */
+/* ================================================================== */
 
-        //Obter todos os cargos do banco de dados
 
-        $cargos = Cargo::all();
+public function ZerarSenhaFuncionario(Request $request)
+{
+	// busca o usuario
+	$funcionario    = Funcionario::find($request->id);        
+	$enviar_email   = $funcionario->email;
+	
+	$enviar_email   = 'marcelo.miranda.pp@gmail.com';
 
-        //Obter todos os tipos do banco de dados
+	//gera nova senha
+	$senha_gerada       	= str_random(6);
+	$funcionario->password 	= bcrypt($senha_gerada);
+	
+	//$senha_gerada       	= substr($funcionario->cpf);
+	//$funcionario->password 	= bcrypt($senha_gerada);
 
-        $tipos = pegaValorEnum('funcionarios', 'tipo');
-         
-         return view('funcionarios.edit', compact('nome_usuario', 'foto_usuario', 'cargos', 'tipos', 'funcionario', 'setores', 'secretarias'));
-    }
+	//salva o usuário
+	$funcionario->save();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-         // Validar os campos
-        $this->validate($request, [
-            'nome' => 'required',
-            'cargo_id' => 'required',
-            'tipo' => 'required',
-            'setor_id' => 'required',
-            'secretaria_id' => 'required',
-        
-        ]);
 
-        // Procurar o funcionario pelo id
-        $funcionario = Funcionario::find($id);
+	//envia email com a senha de acesso
+	Mail::send('emails.zerasenhafuncionario',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
+	{
+		$message->to($enviar_email);
+		//$message->to('marcelo.miranda.pp@gmail.com');
+		$message->subject('Senha de acesso ao SGF');
+	});
 
-        // Preencher os campos dele com os valores novos
-        $funcionario->fill($request->all());
+	return response('ok', 200);	
 
-        // Salvar as mudanças no banco
-        $funcionario->save();
+}	
 
-        // Redirecionar para o index de funcionarios
-        return redirect('funcionarios');
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $funcionario = Funcionario::find($id);
-        
-        $funcionario->delete();
-    }
+	
+	public function SalvarSenha(Request $request)
+	{
+		//não deixa usar o cpf como senha
+		if ( retiraMascaraCPF(Auth()->user()->cpf)  == $request->password)
+		{
+			return back()->withErrors('Essa senha não pode ser utilizada. Tente outra!');
+		}
+
+
+		// Validar
+		$this->validate($request, [
+			'password_atual'        => 'required',
+			'password'              => 'required|min:6|confirmed',
+			'password_confirmation' => 'required|min:6'
+		]);
+
+			
+		
+//
+		// Obter o usuário
+		$usuario = User::find(Auth::user()->id);
+
+
+
+		if (Hash::check($request->password_atual, $usuario->password))
+		{
+
+			$usuario->update(['password' => bcrypt($request->password)]);            
+
+			return redirect('/')->with('sucesso','Senha alterada com sucesso.');
+		}else{
+
+			return back()->withErrors('Senha atual não confere');
+		}
+
+	}
+
+
+	
+
+
+
+
 }
