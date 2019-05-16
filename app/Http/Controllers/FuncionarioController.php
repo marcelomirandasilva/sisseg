@@ -49,16 +49,10 @@ class FuncionarioController extends Controller
 		$secretarias = Secretaria::all();
 		
 		$tipos = pegaValorEnum('funcionarios', 'tipo');
+		$categorias = pegaValorEnum('funcionarios', 'categoria_cnh');
 
-		return view('funcionarios.create', compact('titulo', 'secretarias', 'tipos'));
+		return view('funcionarios.create', compact('titulo', 'secretarias', 'tipos','categorias'));
 	}
-
-	/**
-	 * Store a newly created resource in storage.
-	*
-	* @param  \Illuminate\Http\Request  $request
-	* @return \Illuminate\Http\Response
-	*/
 	public function store(Request $request)
 	{
 		//dd($request->all());
@@ -71,8 +65,15 @@ class FuncionarioController extends Controller
 				'tipo' => 'required',
 				'secretaria_id' => 'required',
 		]);
+		
+		if ($request->motorista){      
+			$data 				= str_replace('/', '-', $request->validade_cnh );
+			$data_formatada 	= date("Y-m-d", strtotime($data)				)	;
 
-		$request->merge(['motorista' 		=> str_replace('on', "1", $request->motorista)]);
+			$request->merge(['validade_cnh' => $data_formatada]);
+			$request->merge(['cnh' 				=> str_replace('.', "", $request->cnh)]);
+			$request->merge(['motorista' 		=> str_replace('on', "1", $request->motorista)]);
+		}
 
 		if( $request->email){
 			$senha_gerada       = str_random(6);
@@ -121,14 +122,16 @@ class FuncionarioController extends Controller
 		$secretarias = Secretaria::all();
 		
 		$tipos = pegaValorEnum('funcionarios', 'tipo');
+		$categorias = pegaValorEnum('funcionarios', 'categoria_cnh');
 
-		return view('funcionarios.create', compact('funcionario', 'titulo', 'secretarias', 'tipos'));         
+		
+		return view('funcionarios.create', compact('funcionario', 'titulo', 'secretarias', 'tipos','categorias'));         
 	}
 
 
 	public function update(Request $request, $id)
 	{
-
+//		dd($request->all());
 		$this->validate($request, [
 			'nome' => 'required',
 			'email' => 'email|max:255|unique:funcionarios,email,'.$id,
@@ -136,10 +139,17 @@ class FuncionarioController extends Controller
 			'tipo' => 'required',
 			'secretaria_id' => 'required',
 			
-		]);
+			]);
 			
-		$request->merge(['motorista' 		=> str_replace('on', "1", $request->motorista)]);
-		
+			if ($request->motorista){
+				$data 				= str_replace('/', '-', $request->validade_cnh );
+				$data_formatada 	= date("Y-m-d", strtotime($data)				)	;
+
+				$request->merge(['validade_cnh' => $data_formatada]);
+				$request->merge(['cnh' => str_replace('.', "", $request->cnh)]);
+				$request->merge(['motorista' => str_replace('on', "1", $request->motorista)]);
+			}
+			//dd($request->all());
 		// Procurar o funcionario pelo id
 		$funcionario = Funcionario::find($id);
 		
@@ -147,7 +157,7 @@ class FuncionarioController extends Controller
 		$funcionario->fill($request->all());
 		
 		
-		dd($funcionario);
+		//dd($funcionario);
 		$funcionario->save();
 		
 		

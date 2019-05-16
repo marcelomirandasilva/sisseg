@@ -124,27 +124,32 @@
 						<div class="form-group col-md-6">
 							<label class="col-md-2 col-form-label text-md-right" for="categoria_cnh">Categoria</label>
 							<div class="col-md-7">
-								<input type="categoria_cnh" id="categoria_cnh" class="form-control" name="categoria_cnh" 
-									value="{{$funcionario->categoria_cnh or old('categoria_cnh')}}" 
-									@if(!$funcionario->motorista) disabled @endif 
-								/>
+								<select id="categoria_cnh" class="form-control" name="categoria_cnh" required>
+									<option value="">Selecione um categoria...</option>
+									@if (isset($funcionario))
+										@foreach($categorias as $categoria)
+											@if ( $funcionario->categoria_cnh == $categoria)
+												<option value="{{$categoria}}" selected="selected"> {{$categoria}} </option>
+											@else
+												<option value="{{$categoria}}" > {{$categoria}} </option>
+											@endif
+										@endforeach
+									@else
+										@foreach($categorias as $categoria)
+											<option value="{{$categoria}}"> {{$categoria}} </option>
+										@endforeach
+									@endif
+								</select>
 							</div>
 						</div>
-		
 						<div class="form-group col-md-6">
 							<label class="col-md-2 col-form-label text-md-right" for="validade_cnh">Validade</label>
 							<div class="col-md-7">
 								@if(isset($funcionario))
 									<input type="date" id="validade_cnh" class="form-control" name="validade_cnh" 
-										@if($funcionario->motorista) 
-											value="{{$funcionario->validade_cnh or old('validade_cnh')}}" 
-										@endif
-									/>
+										value="{{$funcionario->validade_cnh }}" disabled />
 								@else
-									<input type="validade_cnh" id="validade_cnh" class="form-control" name="validade_cnh" 
-										value="{{date("d-m-Y", strtotime($funcionario->validade_cnh)) or old('validade_cnh') }}" 
-										disabled 
-									/>
+									<input type="date" id="validade_cnh" class="form-control" name="validade_cnh" value="" disabled />
 								@endif
 							</div>
 						</div>
@@ -181,7 +186,7 @@
 
 	<script>
 
-		VMasker ($("#validade_cnh")).maskPattern("99/99/9999");
+		//VMasker ($("#validade_cnh")).maskPattern("99/99/9999");
 		VMasker ($("#categoria_cnh")).maskPattern("AA");
 		VMasker ($("#cnh")).maskPattern("99.999.999.999");
 		VMasker ($("#celular")).maskPattern("99999-9999"); 
