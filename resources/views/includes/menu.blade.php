@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
-			<h1 class="site_title" style="padding-left: 10px; padding-top: 5px; font-size: 26px;"><i class="fa fa-shield"></i>  SISSEG</h1>
+			<h1 class="site_title" style="padding-left: 10px; padding-top: 5px; font-size: 26px;"><i class="fas fa-shield-alt"></i>  SISSEG</h1>
 		</div>
 
 		<div class="clearfix"></div>
@@ -12,26 +12,26 @@
 			<div class="menu_section">
 
 			<ul class="nav side-menu">
-				<li><a href="{{ url('/usuarios')}}"><i class="fa fa-user"></i> Administradores <span class="{{-- fa fa-chevron-down --}}"></span> </a>
+				<li><a href="{{ url('/usuarios')}}"><i class="fas fa-crown"></i> Administradores <span class="{{-- fa fa-chevron-down --}}"></span> </a>
 				{{-- <ul class="nav child_menu">
 					<li><a href="index.html">Dashboard</a></li>
 					<li><a href="index2.html">Dashboard2</a></li>
 					<li><a href="index3.html">Dashboard3</a></li>
 				</ul> --}}
 				</li>
-				<li><a href="{{ url('/funcionarios')}}"><i class="fa fa-user"></i> Funcionários <span class=""></span></a>
+				<li><a href="{{ url('/funcionarios')}}"><i class="fas fa-user"></i> Funcionários <span class=""></span></a>
 				</li>
-				{{-- <li><a href="{{ url('/cargos')}}"><i class="fa fa-user"></i> Cargos <span class=""></span></a>
+				{{-- <li><a href="{{ url('/cargos')}}"><i class="fas fa-user"></i> Cargos <span class=""></span></a>
 				</li> --}}
-				<li><a href="{{ url('/secretarias')}}"><i class="fa fa-user"></i> Secretarias <span class=""></span></a>
+				<li><a href="{{ url('/secretarias')}}"><i class="material-icons mat_icone">account_balance</i> Secretarias <span class=""></span></a>
 				</li>
-				{{-- <li><a href="{{ url('/setores')}}"><i class="fa fa-user"></i> Setores <span class=""></span></a> --}}
+				{{-- <li><a href="{{ url('/setores')}}"><i class="fas fa-user"></i> Setores <span class=""></span></a> --}}
 				</li>
-				<li><a href="{{ url('/sistemas')}}"><i class="fa fa-sitemap"></i> Sistemas <span class=""></span></a>
+				<li><a href="{{ url('/sistemas')}}"><i class="fas fa-sitemap"></i> Sistemas <span class=""></span></a>
 				</li>
-				<li><a href="{{ url('/roles')}}"><i class="fa fa-wrench"></i> Roles <span class=""></span></a>
+				<li><a href="{{ url('/roles')}}"><i class="fas fa-wrench"></i> Roles <span class=""></span></a>
 				</li>
-				<li><a href="{{ url('/opcoes')}}"><i class="fa fa-cog"></i> Opções <span class=""></span></a>
+				<li><a href="{{ url('/opcoes')}}"><i class="fas fa-cog"></i> Opções <span class=""></span></a>
 				</li>
 			</ul>
 			</div>

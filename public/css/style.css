@@ -1,3 +1,19 @@
+.site_title i {
+    border: 1px solid #EAEAEA;
+    padding: 8px!important;
+    border-radius: 50%;
+}
+
+.fas{
+    /* font-size: 20px !important; */
+    padding-right: 10px !important;
+}
+
+.mat_icone{
+    font-size: 20px !important; 
+    padding-right: 5px !important;
+}
+
 .tabela_compacta td {
     font-size: 12px !important;
     padding-bottom: 2px !important;
@@ -17,3 +33,4 @@
     -moz-box-shadow:    2px 4px 20px -3px rgb(110, 17, 22 !important;
     box-shadow:         2px 4px 20px -3px rgb(110, 17, 22 !important;
 }
+
