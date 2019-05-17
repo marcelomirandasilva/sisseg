@@ -102,20 +102,29 @@
 						<div class="col-md-6">
 							<label class="col-md-2 col-form-label " for="celular">Celular</label>
 							<div class="col-md-7">
-								<input type="celular" id="celular" class="form-control" name="celular"
-									value="{{$funcionario->celular or old('celular')}}" 
-									@if(!$funcionario->motorista) disabled @endif 
-								/>
+								@if (isset($funcionario))
+									<input type="celular" id="celular" class="form-control" name="celular"
+										value="{{$funcionario->celular or old('celular')}}" 
+										@if(!$funcionario->motorista) disabled @endif 
+									/>
+								@else
+									<input type="celular" id="celular" class="form-control" name="celular"
+										value="{{$funcionario->celular or old('celular')}}" disabled  />
+								@endif
 							</div>
 						</div>
 		
 						<div class="col-md-6">
 							<label class="col-md-2 col-form-label " for="cnh">CNH</label>
 							<div class="col-md-7">
-								<input type="cnh" id="cnh" class="form-control" name="cnh" 
-									value="{{$funcionario->cnh or old('cnh')}}" 
-									@if(!$funcionario->motorista) disabled @endif 
-								/>
+								@if (isset($funcionario))
+									<input type="cnh" id="cnh" class="form-control" name="cnh" 
+										value="{{$funcionario->cnh or old('cnh')}}" 
+										@if(!$funcionario->motorista) disabled @endif/>
+								@else
+									<input type="cnh" id="cnh" class="form-control" name="cnh" 
+										value="{{$funcionario->cnh or old('cnh')}}" disabled/>
+								@endif
 							</div>
 						</div>
 					</div>
