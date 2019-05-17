@@ -21,8 +21,8 @@
 				</li>
 				<li><a href="{{ url('/funcionarios')}}"><i class="fa fa-user"></i> Funcionários <span class=""></span></a>
 				</li>
-				<li><a href="{{ url('/cargos')}}"><i class="fa fa-user"></i> Cargos <span class=""></span></a>
-				</li>
+				{{-- <li><a href="{{ url('/cargos')}}"><i class="fa fa-user"></i> Cargos <span class=""></span></a>
+				</li> --}}
 				<li><a href="{{ url('/secretarias')}}"><i class="fa fa-user"></i> Secretarias <span class=""></span></a>
 				</li>
 				{{-- <li><a href="{{ url('/setores')}}"><i class="fa fa-user"></i> Setores <span class=""></span></a> --}}
