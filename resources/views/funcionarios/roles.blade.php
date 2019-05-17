@@ -10,9 +10,7 @@
 				<table class="table table-bordered tabela_compacta ">
 					<tr><td><b>Funcionário</b></td> 	<td>{{$funcionario->nome}}</td></tr>
 					<tr><td><b>Email</b></td> 			<td>{{$funcionario->email}}</td></tr>
-					<tr><td><b>Secretaria</b></td>	<td>{{$funcionario->setor->secretaria->nome}}</td></tr>
-					<tr><td><b>Setor</b></td>			<td>{{$funcionario->setor->nome}}</td></tr>
-					<tr><td><b>Cargo</b></td>			<td>{{$funcionario->cargo->nome}}</td></tr>
+					<tr><td><b>Secretaria</b></td>	<td>{{$funcionario->secretaria->nome}}</td></tr>
 					<tr><td><b>Tipo</b></td>			<td>{{$funcionario->tipo}}</td></tr>
 				</table>
 			</div>

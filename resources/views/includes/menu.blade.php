@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
 	<div class="left_col scroll-view">
 		<div class="navbar nav_title">
-			<h1 class="site_title" style="padding-left: 30px; padding-top: 5px; font-size: 26px;"><i class="fa fa-shield"></i>  SISSEG</h1>
+			<h1 class="site_title" style="padding-left: 10px; padding-top: 5px; font-size: 26px;"><i class="fa fa-shield"></i>  SISSEG</h1>
 		</div>
 
 		<div class="clearfix"></div>
@@ -25,7 +25,7 @@
 				</li>
 				<li><a href="{{ url('/secretarias')}}"><i class="fa fa-user"></i> Secretarias <span class=""></span></a>
 				</li>
-				<li><a href="{{ url('/setores')}}"><i class="fa fa-user"></i> Setores <span class=""></span></a>
+				{{-- <li><a href="{{ url('/setores')}}"><i class="fa fa-user"></i> Setores <span class=""></span></a> --}}
 				</li>
 				<li><a href="{{ url('/sistemas')}}"><i class="fa fa-sitemap"></i> Sistemas <span class=""></span></a>
 				</li>
