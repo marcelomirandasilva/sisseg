@@ -19,7 +19,7 @@ class RoleController extends Controller
 	public function index()
 	{
 
-		$retorno = DB::select("select consulta_role(69, 'SGF', 'FISCAL') as retorno");
+		//$retorno = DB::select("select consulta_role(69, 'SGF', 'FISCAL') as retorno");
 
 		//$func = Funcionario::find(69)->roles()->get();
 
