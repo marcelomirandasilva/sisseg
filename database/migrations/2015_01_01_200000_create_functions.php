@@ -15,7 +15,7 @@ class CreateFunctions extends Migration
     {
         DB::unprepared('
             DROP FUNCTION IF EXISTS sisseg.consulta_role;
-            CREATE FUNCTION sisseg.`consulta_role`(fun_id int, sis_nome VARCHAR(255), rol_nome VARCHAR(255) ) RETURNS tinyint(1)
+            CREATE FUNCTION sisseg.`consulta_role`(fun_id int, sis_nome VARCHAR(255), rol_nome VARCHAR(255) ) RETURNS tinyint(1) DETERMINISTIC
             BEGIN
             
             declare v_fun_id int(10) unsigned;
