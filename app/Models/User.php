@@ -9,11 +9,12 @@ use OwenIt\Auditing\Contracts\UserResolver;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Notifications\enviaEmaildeDefinicaodeSenha;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
+/* use Laravel\Passport\HasApiTokens; */
 
 class User extends Authenticatable 
 {
-    use HasApiTokens, Notifiable;
+    /* use HasApiTokens, Notifiable; */
+    use  Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,26 +41,4 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Funcionario');
     }
 
-    public function solicitante()
-    {
-        return $this->belongsTo('App\Models\Solicitante');
-    }
-
-    public function fcm_tokens(){
-        return $this->hasMany('App\Models\FCM_Token');
-    }
-
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new enviaEmaildeDefinicaodeSenha($token));
-    }
-
-    /**
-    *   Método estático necessário para o plugin de auditoria
-    */
-
-    public static function resolveId()
-    {
-        return Auth::check() ? Auth::user()->getAuthIdentifier() : null;
-    }
 }

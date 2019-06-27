@@ -9,7 +9,7 @@ use OwenIt\Auditing\Contracts\UserResolver;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use App\Notifications\enviaEmaildeDefinicaodeSenha;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
+/* use Laravel\Passport\HasApiTokens; */
 use Illuminate\Database\Eloquent\Model;
 #use OwenIt\Auditing\Contracts\Auditable as AuditableContract;
 

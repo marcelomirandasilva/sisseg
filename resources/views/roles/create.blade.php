@@ -44,12 +44,6 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label for="peso" class="col-md-2 col-form-label text-md-right">Peso da Role</label>
-				<div class="col-md-6">
-					<input id="peso" type="number" class="form-control" name="peso" value="{{$role->peso or old('peso') }}"> 
-				</div>
-			</div>
 
 			<div class="footer text-center"> {{-- col-md-3 col-md-offset-9 --}} <button id="btn_cancelar"
 					class="btn btn-primary">

@@ -13,9 +13,9 @@ class Role extends Model  //implements AuditableContract
 
     protected $fillable = [
     	'acesso',
-     	'peso',
-		'nome',
-		'sistema_id'
+     	
+		  'nome',
+		  'sistema_id'
     ];
 
     // Relacionamentos
