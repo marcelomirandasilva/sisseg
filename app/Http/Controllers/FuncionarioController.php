@@ -206,7 +206,7 @@ public function ZerarSenhaFuncionario(Request $request)
 	$funcionario->save();
 
 
-	Mail::to($enviar_email)->queue(new EnviaSenha($funcionario, $senha_gerada));
+	Mail::to($enviar_email)->send(new EnviaSenha($funcionario, $senha_gerada));
 
 	/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
 	{
