@@ -53,7 +53,7 @@
 
 								<button class="btn_email_senha btn btn-info btn-xs action  botao_acao" 
 									data-toggle="tooltip" 
-									data-usuario = {{$funcionario->id}}
+									data-funcionario = {{$funcionario->id}}
 									data-placement="bottom" 
 									title="Envia NOVA senha por email ao Funcionário">     
 									<i class="glyphicon glyphicon-envelope "></i>
@@ -161,14 +161,13 @@
 					confirmButtonText: 'Sim',
 					cancelButtonText: 'Não',
 				}).then(function (resposta) {
-					console.log(resposta.value);
+					//console.log(resposta.value);
 					if(resposta.value){
 						//chama a rota para zerar a senha e enviar email ao funcionário
 						$.post(url_base + '/zerarsenhafuncionario',{
 							_token: 	'{{ csrf_token() }}',
 							id: 		id_funcionario
 						},function(data){
-							
 							funcoes.notificationRight("top", "right", "danger", "Email com nova senha enviado para o funcionário");
 						})
 					}else{

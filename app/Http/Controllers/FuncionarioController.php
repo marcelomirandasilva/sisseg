@@ -191,13 +191,12 @@ class FuncionarioController extends Controller
 public function ZerarSenhaFuncionario(Request $request)
 {
 	// busca o usuario
-	$funcionario    = Funcionario::find($request->id);        
+	$funcionario    = Funcionario::find($request->id);    
 	$enviar_email   = $funcionario->email;
 	
-	$enviar_email   = 'marcelo.miranda.pp@gmail.com';
-
+	
 	//gera nova senha
-	$senha_gerada       	= str_random(6);
+	$senha_gerada       		= str_random(6);
 	$funcionario->password 	= bcrypt($senha_gerada);
 	
 	//$senha_gerada       	= substr($funcionario->cpf);
@@ -207,14 +206,15 @@ public function ZerarSenhaFuncionario(Request $request)
 	$funcionario->save();
 
 
-	//envia email com a senha de acesso
-	Mail::send('emails.zerasenhafuncionario',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
+	Mail::to($enviar_email)->queue(new EnviaSenha($funcionario, $senha_gerada));
+
+	/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
 	{
 		$message->to($enviar_email);
 		//$message->to('marcelo.miranda.pp@gmail.com');
 		$message->subject('Senha de acesso ao SGF');
 	});
-
+ */
 	return response('ok', 200);	
 
 }	
