@@ -17,6 +17,7 @@ class CreateFuncionariosTable extends Migration
             $table->increments('id');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->mediumText('avatar')->nullable();
             $table->rememberToken();
 
@@ -28,7 +29,6 @@ class CreateFuncionariosTable extends Migration
             $table->boolean('motorista')                ->default(0);
             $table->string('celular',10)                ->nullable();
             $table->char('cnh',11)                      ->nullable();
-            $table->string('categoria_cnh',3)           ->nullable();
             $table->enum('categoria_cnh',['A','B','C','D','E','AB','AC','AD','AE'])->nullable();
 
             $table->date('validade_cnh',11)             ->nullable();

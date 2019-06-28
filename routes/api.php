@@ -17,8 +17,6 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-
-
 // Route::group(['middleware' => 'auth:api'], function(){
 //     Route::apiResource('/funcionarios', "Api\FuncionarioController");
 //     Route::get("/setoresporsecretaria/{id}", "SetorController@setoresporsecretaria");
@@ -28,21 +26,23 @@ use Illuminate\Http\Request;
 // });
 
 
+//Route::group(['middleware' => 'auth:api'], function(){
+   /// rota para buscar setores de uma determinada secretaria
+   Route::get("/setoresporsecretaria/{id}", 				"Api\SetorController@setoresporsecretaria");
+   /// rota para buscar cargos de um determinado setor
+   Route::get("/cargosporsecretaria/{id}", 				"Api\CargoController@cargosporsecretaria");
 
-/// rota para buscar setores de uma determinada secretaria
-    Route::get("/setoresporsecretaria/{id}", "Api\SetorController@setoresporsecretaria");
-    /// rota para buscar cargos de um determinado setor
-    Route::get("/cargosporsecretaria/{id}", "Api\CargoController@cargosporsecretaria");
-    Route::apiResource('/funcionarios', "Api\FuncionarioController");
+   /// rota para verificar se o NOME DO SISTEMA já está cadastrado
+   Route::get("/verificaSistemaExiste/{sistema}", 		"Api\SistemaController@verificaSistemaExiste");
 
+   /// rota para verificar se o NOME DA ROLE já existe em determinado SISTEMA
+   Route::get("/verificaRoleExiste/{sistema}/{role}", "Api\RoleController@verificaRoleExiste");
 
+   Route::post("/verificaRoleFuncionario", 				"Api\RoleController@verificaRoleFuncionario");
 
-/// rota para verificar se o NOME DO SISTEMA já está cadastrado
-Route::get("/verificaSistemaExiste/{sistema}", "Api\SistemaController@verificaSistemaExiste");
+   Route::post("/acesso", 				"Api\AcessoController@acesso");
 
-/// rota para verificar se o NOME DA ROLE já existe em determinado SISTEMA
-Route::get("/verificaRoleExiste/{sistema}/{role}", "Api\RoleController@verificaRoleExiste");
+   //resource
+   Route::apiResource('/funcionario', 						"Api\FuncionarioController");
 
-
-Route::post("/verificaRoleFuncionario", "Api\RoleController@verificaRoleFuncionario");
-
+//});
