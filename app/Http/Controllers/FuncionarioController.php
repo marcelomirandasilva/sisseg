@@ -64,7 +64,7 @@ class FuncionarioController extends Controller
 				'tipo' => 'required',
 				'secretaria_id' => 'required',
 		]);
-		dd($request->all());
+		//dd($request->all());
 		
 		if ($request->motorista){      
 			$data 				= str_replace('/', '-', $request->validade_cnh );
@@ -85,6 +85,7 @@ class FuncionarioController extends Controller
 
 		try {
 				$novo_funcionario = Funcionario::create($request->all());
+				dd($novo_funcionario);
 		
 		} catch (\Illuminate\Database\QueryException $exception) {
 				// You can check get the details of the error using `errorInfo`:
