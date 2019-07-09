@@ -55,7 +55,6 @@ class FuncionarioController extends Controller
 	}
 	public function store(Request $request)
 	{
-		dd($request->all());
 		
 		// Validar os campos
 		$this->validate($request, [
@@ -65,6 +64,7 @@ class FuncionarioController extends Controller
 				'tipo' => 'required',
 				'secretaria_id' => 'required',
 		]);
+		dd($request->all());
 		
 		if ($request->motorista){      
 			$data 				= str_replace('/', '-', $request->validade_cnh );
