@@ -12,7 +12,7 @@ class RolesSeeder extends Seeder
 		public function run()
 		{
 
-
+ 
 			DB::table('roles')->insert(['nome' => 'DSV',                'sistema_id' => '1' ]);
 			DB::table('roles')->insert(['nome' => 'GOVERNO',            'sistema_id' => '1' ]);
 			DB::table('roles')->insert(['nome' => 'GERENTE_FROTA',      'sistema_id' => '1' ]);
@@ -28,6 +28,8 @@ class RolesSeeder extends Seeder
 			DB::table('roles')->insert(['nome' => 'ADMINISTRADOR',      'sistema_id' => '3' ]);
 			DB::table('roles')->insert(['nome' => 'CON_ACE',            'sistema_id' => '4' ]);
 			DB::table('roles')->insert(['nome' => 'LOGIN',              'sistema_id' => '5' ]);
+			DB::table('roles')->insert(['nome' => 'LOGIN',              'sistema_id' => '8' ]);
+			DB::table('roles')->insert(['nome' => 'PROCURADOR',         'sistema_id' => '8' ]);
 
 
 		}

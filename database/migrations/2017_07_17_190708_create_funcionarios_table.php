@@ -15,6 +15,7 @@ class CreateFuncionariosTable extends Migration
     {
         Schema::create('funcionarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->boolean('ativo')                ->default(1);
             $table->string('email')->unique();
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(null);

@@ -20,7 +20,8 @@ class Funcionario extends Authenticatable
     // Fillables
 
     protected $fillable = [
-    	
+
+        'ativo',    	
         'nome',
         'cpf',
     	'matricula',
