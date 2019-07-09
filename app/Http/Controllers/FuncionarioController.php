@@ -83,7 +83,7 @@ class FuncionarioController extends Controller
 		}
 		$request->merge(['password' => bcrypt($senha_gerada)]);
 
-		dd($request->all());
+		//dd($request->all());
 		try {
 				$novo_funcionario = Funcionario::create($request->all());
 
