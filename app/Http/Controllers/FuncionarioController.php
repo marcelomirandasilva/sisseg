@@ -83,10 +83,10 @@ class FuncionarioController extends Controller
 		}
 		$request->merge(['password' => bcrypt($senha_gerada)]);
 
+		dd($request->all());
 		try {
 				$novo_funcionario = Funcionario::create($request->all());
-				dd($novo_funcionario);
-		
+
 		} catch (\Illuminate\Database\QueryException $exception) {
 				// You can check get the details of the error using `errorInfo`:
 				$errorInfo = $exception->errorInfo;
