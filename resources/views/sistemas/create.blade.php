@@ -60,7 +60,8 @@
 				event.preventDefault();
 
 				// Fazer a chamada para a API usando o valor do ID
-				$.get("/api/verificaSistemaExiste/" + $("#nome").val(), function(resultado){
+				
+				$.get(url_base+"/api/verificaSistemaExiste/" + $("#nome").val(), function(resultado){
 					if(resultado == 0){
 						$( "#frm_sistema" ).submit();
 					}else{
