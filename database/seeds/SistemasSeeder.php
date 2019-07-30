@@ -19,20 +19,18 @@ class SistemasSeeder extends Seeder
 		DB::table('sistemas')->insert(['nome' => 'CONSULTA',     'ativo' => '1'  ]);
 		DB::table('sistemas')->insert(['nome' => 'SISDOCA',      'ativo' => '1'  ]);
 		
-
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Geral ',                               'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Câm. de Conciliação e Arbitragem',           'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. da Dívida Ativa',                      'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Tributária Administrativa',            'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Tributária Judicial',                  'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. de Saúde Administrativa',              'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. de Saúde Judicial',                    'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Trabalhista',                          'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. do Contencioso Judicial e Residual',   'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Previdenciária',                       'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. Administrativa e Servidores Públicos', 'ativo' => '1' ]);
-	  	DB::table('sistemas')->insert(['nome' => 'SCP - Proc. de Licitações e Contratos',            'ativo' => '1' ]);
-
+	  	DB::table('sistemas')->insert(['nome' => 'SCP_CSPGM',  	'descricao' => 'Conselho Superior da Procuradoria-Geral do Município de Mesquita', 		'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_CMCA',  	'descricao' => 'Câmara Municipal de Conciliação e Arbitragem do Município de Mesquita', 'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PDA',  	'descricao' => 'Procuradoria da Dívida Ativa', 											'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PTA',  	'descricao' => 'Procuradoria Tributária Administrativa', 								'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PTJ',  	'descricao' => 'Procuradoria Tributária Judicial', 										'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PSA',  	'descricao' => 'Procuradoria de Saúde Administrativa', 									'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PSJ',  	'descricao' => 'Procuradoria de Saúde Judicial', 										'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PTRAB',  	'descricao' => 'Procuradoria Trabalhista', 												'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PCJR',  	'descricao' => 'Procuradoria do Contencioso Judicial e Residual', 						'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PPREV',  	'descricao' => 'Procuradoria Previdenciária', 											'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PASP',  	'descricao' => 'Procuradoria Administrativa e Servidores Públicos', 					'ativo' => '1' ]);
+		DB::table('sistemas')->insert(['nome' => 'SCP_PLC',  	'descricao' => 'Procuradoria de Licitações e Contratos', 								'ativo' => '1' ]);
 
 
 

@@ -149,10 +149,12 @@
 
 			// Testar se há algum erro, e mostrar a notificação 
 			var tempo = 0;
-			var incremento = 500;
+			var incremento = 50000000;
 			@if ($errors->any())
 				@foreach ($errors->all() as $error)
-					setTimeout(function(){funcoes.notificationRight("top", "right", "danger", "{{ $error }}"); }, tempo);
+					setTimeout(function(){
+						funcoes.notificationRight("top", "right", "danger", "{{ $error }}"); 
+					}, tempo);
 					tempo += incremento;
 				@endforeach
 			@endif

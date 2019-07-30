@@ -13,6 +13,7 @@
 					<thead>
 						<tr>
 							<th>Sistema</th>
+							<th>Descrição</th>
 							<th>Ativo</th>
 							<th>Ações</th>
 						</tr>
@@ -20,6 +21,7 @@
 					<tbody class="tabela_compacta"> {{-- Iterar por cada item da lista $sistemas e chamá-la de $sistema --}}
 						@foreach($sistemas as $sistema) <tr>
 							<td> {{$sistema->nome}} </td>
+							<td> @if($sistema->descricao) {{$sistema->descricao}} @else --- @endif </td>
 							<td> @if($sistema->ativo) Sim @else Não @endif </td>
 							<td>
 								<a class="btn_ativa btn btn-warning btn-xs action  pull-right  botao_acao" data-toggle="tooltip"

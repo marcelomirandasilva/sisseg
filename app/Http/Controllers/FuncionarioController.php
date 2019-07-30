@@ -59,8 +59,8 @@ class FuncionarioController extends Controller
 		// Validar os campos
 		$this->validate($request, [
 				'nome' => 'required',
-				'email' => 'email',
-				'cpf' => 'required',
+				'email' => 'email|unique:funcionarios',
+				'cpf' => 'required|unique:funcionarios',
 				'tipo' => 'required',
 				'secretaria_id' => 'required',
 		]);
