@@ -78,7 +78,7 @@
 				event.preventDefault();
 
 				// Fazer a chamada para a API usando o valor do ID
-				$.get("/api/verificaRoleExiste/" + $("#sistema_id").val() +"/"+ $("#nome").val(), function(resultado){
+				$.get(url_base+"/api/verificaRoleExiste/" + $("#sistema_id").val() +"/"+ $("#nome").val(), function(resultado){
 					if(resultado == 0){
 						$( "#frm_role" ).submit();
 					}else{
