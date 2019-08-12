@@ -40,6 +40,7 @@ Route::get('/', 'HomeController@index')->name('home');
 /* ======================================================================================== */
 Route::post('/zerarsenhafuncionario',	   'FuncionarioController@ZerarSenhaFuncionario');
 Route::post('/enviarsenhafuncionario',		'FuncionarioController@EnviarSenhaFuncionario');
+Route::get('/zerarguarda',	   'FuncionarioController@zerarguarda');
 
 
 /* ROLES */

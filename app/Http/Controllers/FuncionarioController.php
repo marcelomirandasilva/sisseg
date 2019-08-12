@@ -16,6 +16,8 @@ use Illuminate\Validation\Rule;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EnviaSenha;
+use App\Mail\NovaSenha;
+use App\Mail\GesolToSisrel;
 
 class FuncionarioController extends Controller
 {
@@ -207,7 +209,8 @@ public function ZerarSenhaFuncionario(Request $request)
 	$funcionario->save();
 
 
-	Mail::to($enviar_email)->send(new EnviaSenha($funcionario, $senha_gerada));
+
+	Mail::to($enviar_email)->send(new NovaSenha($funcionario, $senha_gerada));
 
 	/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
 	{
@@ -260,7 +263,48 @@ public function ZerarSenhaFuncionario(Request $request)
 	}
 
 
+
+	public function zerarguarda()
+{
+	// busca o usuario
+	$funcionarios    = Funcionario::where('secretaria_id',9)->get();    
 	
+	foreach ($funcionarios as $key => $funcionario) {
+		if( $funcionario->email == 'marcelo.miranda@mesquita.rj.gov.br'){
+		
+			echo ("<pre>");
+	
+			print_r($funcionario->nome);	
+			print_r("  -  ");	
+			print_r($funcionario->email);	
+			print_r("  -  ");	
+			print_r($funcionario->cpf);	
+			print_r("  -  ");	
+	
+			$cpf = trim($funcionario->cpf);
+			$cpf = str_replace(".", "", $cpf);
+			$cpf = str_replace("-", "", $cpf);
+			
+			print_r($cpf);	
+	
+			echo ("</pre>");
+			
+			$funcionario->password 	= bcrypt($cpf);
+			$funcionario->save();
+	
+			if( $funcionario->email == 'marcelo.miranda@mesquita.rj.gov.br'){
+				//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
+				Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
+			}
+		}
+
+	}
+	
+	//dd("dsfdsf");
+	
+	return response('ok', 200);	
+
+}
 
 
 
