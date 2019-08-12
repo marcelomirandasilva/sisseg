@@ -270,32 +270,29 @@ public function ZerarSenhaFuncionario(Request $request)
 	$funcionarios    = Funcionario::where('secretaria_id',9)->get();    
 	
 	foreach ($funcionarios as $key => $funcionario) {
-		if( $funcionario->email == 'marcelo.miranda@mesquita.rj.gov.br'){
+		echo ("<pre>");
+
+		print_r($funcionario->nome);	
+		print_r("  -  ");	
+		print_r($funcionario->email);	
+		print_r("  -  ");	
+		print_r($funcionario->cpf);	
+		print_r("  -  ");	
+
+		$cpf = trim($funcionario->cpf);
+		$cpf = str_replace(".", "", $cpf);
+		$cpf = str_replace("-", "", $cpf);
 		
-			echo ("<pre>");
-	
-			print_r($funcionario->nome);	
-			print_r("  -  ");	
-			print_r($funcionario->email);	
-			print_r("  -  ");	
-			print_r($funcionario->cpf);	
-			print_r("  -  ");	
-	
-			$cpf = trim($funcionario->cpf);
-			$cpf = str_replace(".", "", $cpf);
-			$cpf = str_replace("-", "", $cpf);
-			
-			print_r($cpf);	
-	
-			echo ("</pre>");
-			
-			$funcionario->password 	= bcrypt($cpf);
-			$funcionario->save();
-	
-			if( $funcionario->email == 'marcelo.miranda@mesquita.rj.gov.br'){
-				//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
-				Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
-			}
+		print_r($cpf);	
+
+		echo ("</pre>");
+		
+		$funcionario->password 	= bcrypt($cpf);
+		$funcionario->save();
+
+		if( $funcionario->email){
+			//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
+			Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
 		}
 
 	}

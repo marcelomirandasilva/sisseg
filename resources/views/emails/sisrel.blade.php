@@ -1,5 +1,10 @@
-
-@component('mail::message')
+@component('mail::layout')
+   {{-- Header --}}
+   @slot('header')
+      @component('mail::header', ['url' => 'http://tecnologia360.mesquita.rj.gov.br'])
+         Sistema de Segurança 
+      @endcomponent
+   @endslot
 
    <p>Olá {{$funcionario->nome}}, </p>
    <br>
@@ -33,4 +38,15 @@
 
    </table>
 
+   {{-- Footer --}}
+   @slot('footer')
+      @component('mail::footer')
+            © {{ date('Y') }} {{ config('app.name') }}.
+            <br>
+            Setor de Desenvolvimento de Sistemas - Subsecretaria da Tecnologia da Informação 
+            <br>
+            Prefeitura Municipal de Mesquita - RJ
+      @endcomponent
+   @endslot
 @endcomponent
+
