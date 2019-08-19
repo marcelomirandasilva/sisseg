@@ -25,7 +25,7 @@
 					@foreach($funcionarios as $funcionario)
 						<tr>
 							<td> {{$funcionario->nome}}			</td>
-							<td> {{$funcionario->secretaria->sigla}}	</td>
+							<td> {{$funcionario->secretaria['sigla']}}	</td>
 							<td> {{$funcionario->tipo}}			</td>
 							<td class="actions">
 								<a class="btn_ativa btn btn-primary btn-xs action  botao_acao" title="Visualizar" href="#">
