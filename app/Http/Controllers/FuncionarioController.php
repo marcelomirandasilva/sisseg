@@ -49,7 +49,7 @@ class FuncionarioController extends Controller
 	{
 		$titulo = "Cadastro de Funcionarios";
 		$secretarias = Secretaria::all();
-		
+
 		$tipos = pegaValorEnum('funcionarios', 'tipo');
 		$categorias = pegaValorEnum('funcionarios', 'categoria_cnh');
 
@@ -57,7 +57,7 @@ class FuncionarioController extends Controller
 	}
 	public function store(Request $request)
 	{
-		
+
 		// Validar os campos
 		$this->validate($request, [
 				'nome' => 'required',
@@ -67,8 +67,8 @@ class FuncionarioController extends Controller
 				'secretaria_id' => 'required',
 		]);
 		//dd($request->all());
-		
-		if ($request->motorista){      
+
+		if ($request->motorista){
 			$data 				= str_replace('/', '-', $request->validade_cnh );
 			$data_formatada 	= date("Y-m-d", strtotime($data)				)	;
 
@@ -92,16 +92,16 @@ class FuncionarioController extends Controller
 		} catch (\Illuminate\Database\QueryException $exception) {
 				// You can check get the details of the error using `errorInfo`:
 				$errorInfo = $exception->errorInfo;
-		
+
 				DB::rollBack();
 				if($errorInfo[0] = 2300){
-					return back()->withInput()->with('error', 'Falha ao criar o Funcionário. Email já está cadastrado');  
+					return back()->withInput()->with('error', 'Falha ao criar o Funcionário. Email já está cadastrado');
 				}
-			return back()->withInput()->with('error', 'Falha ao criar o Funcionário. cod:'. $errorInfo[0]);  
+			return back()->withInput()->with('error', 'Falha ao criar o Funcionário. cod:'. $errorInfo[0]);
 		}
 
 		if($novo_funcionario){
-		
+
 			DB::commit();
 			//se tiver email cadastrado envia a ele a senha gerada
 			if( $request->email){
@@ -112,9 +112,9 @@ class FuncionarioController extends Controller
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
-			return back()->withInput()->with('error', 'Falha ao criar o Usuario.');    
+			return back()->withInput()->with('error', 'Falha ao criar o Usuario.');
 		}
-		
+
 	}
 
 	public function edit($id)
@@ -123,12 +123,12 @@ class FuncionarioController extends Controller
 
 		$titulo = "Edição de Funcionarios";
 		$secretarias = Secretaria::all();
-		
+
 		$tipos = pegaValorEnum('funcionarios', 'tipo');
 		$categorias = pegaValorEnum('funcionarios', 'categoria_cnh');
 
-		
-		return view('funcionarios.create', compact('funcionario', 'titulo', 'secretarias', 'tipos','categorias'));         
+
+		return view('funcionarios.create', compact('funcionario', 'titulo', 'secretarias', 'tipos','categorias'));
 	}
 
 
@@ -141,9 +141,9 @@ class FuncionarioController extends Controller
 			'cpf' => 'required',
 			'tipo' => 'required',
 			'secretaria_id' => 'required',
-			
+
 			]);
-			
+
 			if ($request->motorista){
 				$data 				= str_replace('/', '-', $request->validade_cnh );
 				$data_formatada 	= date("Y-m-d", strtotime($data)				)	;
@@ -155,24 +155,24 @@ class FuncionarioController extends Controller
 			//dd($request->all());
 		// Procurar o funcionario pelo id
 		$funcionario = Funcionario::find($id);
-		
+
 		// Preencher os campos dele com os valores novos
 		$funcionario->fill($request->all());
-		
-		
+
+
 		//dd($funcionario);
 		$funcionario->save();
-		
-		
+
+
 		if($funcionario){
 			DB::commit();
 			return redirect('funcionarios')->with('sucesso', 'Funcionario Editado com sucesso!');
 		} else {
 			//Fail, desfaz as alterações no banco de dados
 			DB::rollBack();
-			return back()->withInput()->with('error', 'Falha ao Editar o Funcionario.');    
+			return back()->withInput()->with('error', 'Falha ao Editar o Funcionario.');
 		}
-	
+
 
 	}
 
@@ -180,7 +180,7 @@ class FuncionarioController extends Controller
 	public function destroy($id)
 	{
 		$funcionario = Funcionario::find($id);
-		
+
 		$funcionario->delete();
 	}
 
@@ -194,14 +194,14 @@ class FuncionarioController extends Controller
 public function ZerarSenhaFuncionario(Request $request)
 {
 	// busca o usuario
-	$funcionario    = Funcionario::find($request->id);    
+	$funcionario    = Funcionario::find($request->id);
 	$enviar_email   = $funcionario->email;
-	
-	
+
+
 	//gera nova senha
 	$senha_gerada       		= str_random(6);
 	$funcionario->password 	= bcrypt($senha_gerada);
-	
+
 	//$senha_gerada       	= substr($funcionario->cpf);
 	//$funcionario->password 	= bcrypt($senha_gerada);
 
@@ -219,12 +219,12 @@ public function ZerarSenhaFuncionario(Request $request)
 		$message->subject('Senha de acesso ao SGF');
 	});
  */
-	return response('ok', 200);	
+	return response('ok', 200);
 
-}	
+}
 
 
-	
+
 	public function SalvarSenha(Request $request)
 	{
 		//não deixa usar o cpf como senha
@@ -241,8 +241,8 @@ public function ZerarSenhaFuncionario(Request $request)
 			'password_confirmation' => 'required|min:6'
 		]);
 
-			
-		
+
+
 //
 		// Obter o usuário
 		$usuario = User::find(Auth::user()->id);
@@ -252,7 +252,7 @@ public function ZerarSenhaFuncionario(Request $request)
 		if (Hash::check($request->password_atual, $usuario->password))
 		{
 
-			$usuario->update(['password' => bcrypt($request->password)]);            
+			$usuario->update(['password' => bcrypt($request->password)]);
 
 			return redirect('/')->with('sucesso','Senha alterada com sucesso.');
 		}else{
@@ -267,26 +267,26 @@ public function ZerarSenhaFuncionario(Request $request)
 	public function zerarguarda()
 {
 	// busca o usuario
-	$funcionarios    = Funcionario::where('secretaria_id',9)->get();    
-	
+	$funcionarios    = Funcionario::where('secretaria_id',9)->get();
+
 	foreach ($funcionarios as $key => $funcionario) {
 		echo ("<pre>");
 
-		print_r($funcionario->nome);	
-		print_r("  -  ");	
-		print_r($funcionario->email);	
-		print_r("  -  ");	
-		print_r($funcionario->cpf);	
-		print_r("  -  ");	
+		print_r($funcionario->nome);
+		print_r("  -  ");
+		print_r($funcionario->email);
+		print_r("  -  ");
+		print_r($funcionario->cpf);
+		print_r("  -  ");
 
 		$cpf = trim($funcionario->cpf);
 		$cpf = str_replace(".", "", $cpf);
 		$cpf = str_replace("-", "", $cpf);
-		
-		print_r($cpf);	
+
+		print_r($cpf);
 
 		echo ("</pre>");
-		
+
 		$funcionario->password 	= bcrypt($cpf);
 		$funcionario->save();
 
@@ -296,10 +296,10 @@ public function ZerarSenhaFuncionario(Request $request)
 		}
 
 	}
-	
+
 	//dd("dsfdsf");
-	
-	return response('ok', 200);	
+
+	return response('ok', 200);
 
 }
 
