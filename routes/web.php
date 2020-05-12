@@ -42,6 +42,7 @@ Route::post('/zerarsenhafuncionario',	   'FuncionarioController@ZerarSenhaFuncio
 Route::post('/enviarsenhafuncionario',		'FuncionarioController@EnviarSenhaFuncionario');
 Route::get('/zerarguarda',	   'FuncionarioController@zerarguarda');
 
+Route::post('/testaemail',	   'FuncionarioController@testaEmail');
 
 /* ROLES */
 /* ================================================ */

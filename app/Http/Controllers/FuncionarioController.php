@@ -25,11 +25,8 @@ class FuncionarioController extends Controller
 	{
 		$this->middleware('auth');
 	}
-	/**
-	 * Display a listing of the resource.
-	*
-	* @return \Illuminate\Http\Response
-	*/
+
+
 	public function index()
 	{
 			// Armazenando o nome do usuário logado na variável $nome_usuario
@@ -55,6 +52,7 @@ class FuncionarioController extends Controller
 
 		return view('funcionarios.create', compact('titulo', 'secretarias', 'tipos','categorias'));
 	}
+
 	public function store(Request $request)
 	{
 
@@ -134,7 +132,7 @@ class FuncionarioController extends Controller
 
 	public function update(Request $request, $id)
 	{
-//		dd($request->all());
+		//		dd($request->all());
 		$this->validate($request, [
 			'nome' => 'required',
 			'email' => 'email|max:255|unique:funcionarios,email,'.$id,
@@ -191,37 +189,38 @@ class FuncionarioController extends Controller
 /* ================================================================== */
 
 
-public function ZerarSenhaFuncionario(Request $request)
-{
-	// busca o usuario
-	$funcionario    = Funcionario::find($request->id);
-	$enviar_email   = $funcionario->email;
-
-
-	//gera nova senha
-	//$senha_gerada       		= str_random(6);
-	//$funcionario->password 	    = bcrypt($senha_gerada);
-
-	$senha_gerada       	= substr($funcionario->cpf,3);
-	$funcionario->password 	= bcrypt($senha_gerada);
-
-	//salva o usuário
-	$funcionario->save();
-
-
-
-	Mail::to($enviar_email)->send(new NovaSenha($funcionario, $senha_gerada));
-
-	/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
+	public function ZerarSenhaFuncionario(Request $request)
 	{
-		$message->to($enviar_email);
-		//$message->to('marcelo.miranda.pp@gmail.com');
-		$message->subject('Senha de acesso ao SGF');
-	});
- */
-	return response('ok', 200);
+		// busca o usuario
+		$funcionario    = Funcionario::find($request->id);
+		$enviar_email   = $funcionario->email;
 
-}
+
+		//gera nova senha
+		//$senha_gerada       		= str_random(6);
+		//$funcionario->password 	    = bcrypt($senha_gerada);
+
+		$senha_gerada       	= substr($funcionario->cpf,3);
+		$funcionario->password 	= bcrypt($senha_gerada);
+
+		//salva o usuário
+		$funcionario->save();
+
+
+
+		Mail::to($enviar_email)->send(new NovaSenha($funcionario, $senha_gerada));
+
+		/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
+		{
+			$message->to($enviar_email);
+			//$message->to('marcelo.miranda.pp@gmail.com');
+			$message->subject('Senha de acesso ao SGF');
+		});
+		*/
+
+		return response('ok', 200);
+
+	}
 
 
 
@@ -241,9 +240,6 @@ public function ZerarSenhaFuncionario(Request $request)
 			'password_confirmation' => 'required|min:6'
 		]);
 
-
-
-//
 		// Obter o usuário
 		$usuario = User::find(Auth::user()->id);
 
@@ -265,43 +261,75 @@ public function ZerarSenhaFuncionario(Request $request)
 
 
 	public function zerarguarda()
-{
-	// busca o usuario
-	$funcionarios    = Funcionario::where('secretaria_id',9)->get();
+	{
+		// busca o usuario
+		$funcionarios    = Funcionario::where('secretaria_id',9)->get();
 
-	foreach ($funcionarios as $key => $funcionario) {
-		echo ("<pre>");
+		foreach ($funcionarios as $key => $funcionario) {
+			echo ("<pre>");
 
-		print_r($funcionario->nome);
-		print_r("  -  ");
-		print_r($funcionario->email);
-		print_r("  -  ");
-		print_r($funcionario->cpf);
-		print_r("  -  ");
+			print_r($funcionario->nome);
+			print_r("  -  ");
+			print_r($funcionario->email);
+			print_r("  -  ");
+			print_r($funcionario->cpf);
+			print_r("  -  ");
 
-		$cpf = trim($funcionario->cpf);
-		$cpf = str_replace(".", "", $cpf);
-		$cpf = str_replace("-", "", $cpf);
+			$cpf = trim($funcionario->cpf);
+			$cpf = str_replace(".", "", $cpf);
+			$cpf = str_replace("-", "", $cpf);
 
-		print_r($cpf);
+			print_r($cpf);
 
-		echo ("</pre>");
+			echo ("</pre>");
 
-		$funcionario->password 	= bcrypt($cpf);
-		$funcionario->save();
+			$funcionario->password 	= bcrypt($cpf);
+			$funcionario->save();
 
-		if( $funcionario->email){
-			//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
-			Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
+			if( $funcionario->email){
+				//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
+				Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
+			}
+
 		}
+
+		//dd("dsfdsf");
+
+		return response('ok', 200);
 
 	}
 
-	//dd("dsfdsf");
 
-	return response('ok', 200);
 
-}
+	public function testaEmail(Request $request)
+	{
+		// busca o usuario
+		$funcionario    = Funcionario::find($request->id);
+		$enviar_email   = $funcionario->email;
+
+
+		//gera nova senha
+		$senha_gerada       		= str_random(6);
+		$funcionario->password 	    = bcrypt($senha_gerada);
+
+		//$senha_gerada       	= substr($funcionario->cpf,3);
+		//$funcionario->password 	= bcrypt($senha_gerada);
+
+
+
+		Mail::to('marcelo.miranda.pp@gmail.com')->send(new NovaSenha($funcionario, $senha_gerada));
+
+		/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
+		{
+			$message->to($enviar_email);
+			//$message->to('marcelo.miranda.pp@gmail.com');
+			$message->subject('Senha de acesso ao SGF');
+		});
+		*/
+
+		return response('ok', 200);
+
+	}
 
 
 

@@ -30,41 +30,49 @@
 							<td class="actions">
 								<a class="btn_ativa btn btn-primary btn-xs action  botao_acao" title="Visualizar" href="#">
 									<i class="glyphicon glyphicon-eye-open "></i>
-								</a>								
+								</a>
 
-								<a  
-									class="btn btn-success btn-xs action  botao_acao" 
+								<a
+									class="btn btn-success btn-xs action  botao_acao"
 									data-id="{{$funcionario->id}}"
-									data-nome="{{ $funcionario->nome }}" 
-									data-toggle="tooltip" 
-									data-placement="bottom" 
+									data-nome="{{ $funcionario->nome }}"
+									data-toggle="tooltip"
+									data-placement="bottom"
 									title="Roles"
-									href="{{url('funcionario/roles/'.$funcionario->id)}}">  
+									href="{{url('funcionario/roles/'.$funcionario->id)}}">
 									<i class="fa fa-wrench" "></i>
 								</a>
-								<a  
-									class="btn btn-warning btn-xs action  botao_acao" 
-									data-toggle="tooltip" 
-									data-placement="bottom" 
+								<a
+									class="btn btn-warning btn-xs action  botao_acao"
+									data-toggle="tooltip"
+									data-placement="bottom"
 									title="Editar"
-									href="{{ url('funcionarios/'.$funcionario->id .'/edit' )}}">  
+									href="{{ url('funcionarios/'.$funcionario->id .'/edit' )}}">
 									<i class="glyphicon glyphicon-pencil "></i>
 								</a>
 
-								<button class="btn_email_senha btn btn-info btn-xs action  botao_acao" 
-									data-toggle="tooltip" 
+								<button class="btn_email_senha btn btn-info btn-xs action  botao_acao"
+									data-toggle="tooltip"
 									data-funcionario = {{$funcionario->id}}
-									data-placement="bottom" 
-									title="Envia NOVA senha por email ao Funcionário">     
+									data-placement="bottom"
+									title="Envia NOVA senha por email ao Funcionário">
+									<i class="glyphicon glyphicon-envelope "></i>
+                                </button>
+
+								<button class="btn_teste_email_senha btn  btn-xs action  botao_acao"
+									data-toggle="tooltip"
+									data-funcionario = {{$funcionario->id}}
+									data-placement="bottom"
+									title="teste email">
 									<i class="glyphicon glyphicon-envelope "></i>
 								</button>
 
-								<a  
+								<a
 									class="btn-excluir btn btn-danger btn-xs action  botao_acao"
 									data-id="{{$funcionario->id}}"
-									data-nome="{{ $funcionario->nome }}" 
+									data-nome="{{ $funcionario->nome }}"
 									data-toggle="tooltip"
-									title="Excluir" 
+									title="Excluir"
 									href="#">
 									<i class="glyphicon glyphicon-remove "></i>
 								</a>
@@ -83,27 +91,27 @@
 @push('scripts')
 
 
-	
+
 
 {{-- Sweet Alert --}}
 
 	<script>
 		$(function(){
 
-			//configuração da tabela       
+			//configuração da tabela
 			$.fn.dataTable.moment( 'DD/MM/YYYY' );
-			
-			
+
+
 			var tabela_funcionarios = $("#tb_funcionarios").DataTable({
 				language : {
 					'url' : '{{ asset('js/portugues.json') }}',
 					"decimal": ",",
 					"thousands": "."
-				}, 
+				},
 				stateSave: true,
 				stateDuration: -1,
 				responsive: true,
-				
+
 			});
 
 			$("body").on("click", ".btn-excluir", function(e){
@@ -145,9 +153,9 @@
 							//Recarregar a página
 							location.reload();
 						});
-					} 
+					}
 				});
-			});   
+			});
 
 			/* RESETAR A SENHA DE UM USUÁRIO */
 			$(".btn_email_senha").click(function(){
@@ -180,8 +188,43 @@
 
 				});
 			});
+
+
+
+            /* RESETAR A SENHA DE UM USUÁRIO */
+			$(".btn_teste_email_senha").click(function(){
+				let id_funcionario = $(this).data('funcionario');
+				swal.fire({
+					title: 'Confirma a TESTE de email?',
+					type: 'question',
+					showCancelButton: true,
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					confirmButtonText: 'Sim',
+					cancelButtonText: 'Não',
+				}).then(function (resposta) {
+					//console.log(resposta.value);
+					if(resposta.value){
+						//chama a rota para zerar a senha e enviar email ao funcionário
+						$.post(url_base + '/testaemail',{
+							_token: 	'{{ csrf_token() }}',
+							id: 		id_funcionario
+						},function(data){
+							funcoes.notificationRight("top", "right", "danger", "Email com nova senha enviado para o funcionário");
+						})
+					}else{
+						swal.fire(
+							'Procedimento cancelado',
+							' ',
+							'warning',
+						)
+					}
+
+				});
+			});
+
 		});
-		
+
 	</script>
 
 @endpush
