@@ -200,7 +200,7 @@ class FuncionarioController extends Controller
 		//$senha_gerada       		= str_random(6);
 		//$funcionario->password 	    = bcrypt($senha_gerada);
 
-		$senha_gerada       	= substr($funcionario->cpf,3);
+		$senha_gerada       	= substr($funcionario->cpf,0,3);
 		$funcionario->password 	= bcrypt($senha_gerada);
 
 		//salva o usuário
