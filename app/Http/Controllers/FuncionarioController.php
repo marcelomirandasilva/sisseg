@@ -199,11 +199,11 @@ public function ZerarSenhaFuncionario(Request $request)
 
 
 	//gera nova senha
-	$senha_gerada       		= str_random(6);
-	$funcionario->password 	= bcrypt($senha_gerada);
+	//$senha_gerada       		= str_random(6);
+	//$funcionario->password 	    = bcrypt($senha_gerada);
 
-	//$senha_gerada       	= substr($funcionario->cpf);
-	//$funcionario->password 	= bcrypt($senha_gerada);
+	$senha_gerada       	= substr($funcionario->cpf,3);
+	$funcionario->password 	= bcrypt($senha_gerada);
 
 	//salva o usuário
 	$funcionario->save();
