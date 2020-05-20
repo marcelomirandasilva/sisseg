@@ -169,13 +169,14 @@
 					confirmButtonText: 'Sim',
 					cancelButtonText: 'Não',
 				}).then(function (resposta) {
-					//console.log(resposta.value);
+					console.log(resposta.value);
 					if(resposta.value){
 						//chama a rota para zerar a senha e enviar email ao funcionário
 						$.post(url_base + '/zerarsenhafuncionario',{
 							_token: 	'{{ csrf_token() }}',
 							id: 		id_funcionario
 						},function(data){
+                            console.log(data);
 							funcoes.notificationRight("top", "right", "danger", "Email com nova senha enviado para o funcionário");
 						})
 					}else{

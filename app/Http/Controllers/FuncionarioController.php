@@ -200,8 +200,10 @@ class FuncionarioController extends Controller
 		//$senha_gerada       		= str_random(6);
 		//$funcionario->password 	    = bcrypt($senha_gerada);
 
-		$senha_gerada       	= substr($funcionario->cpf,0,3);
+		//$senha_gerada       	= substr($funcionario->cpf,0,3);
+		$senha_gerada       	= retiraMascaraCPF($funcionario->cpf);
 		$funcionario->password 	= bcrypt($senha_gerada);
+
 
 		//salva o usuário
 		$funcionario->save();
@@ -218,7 +220,7 @@ class FuncionarioController extends Controller
 		});
 		*/
 
-		return response('ok', 200);
+		return response("ok", 200);
 
 	}
 
@@ -244,60 +246,16 @@ class FuncionarioController extends Controller
 		$usuario = User::find(Auth::user()->id);
 
 
-
 		if (Hash::check($request->password_atual, $usuario->password))
 		{
-
 			$usuario->update(['password' => bcrypt($request->password)]);
-
 			return redirect('/')->with('sucesso','Senha alterada com sucesso.');
 		}else{
-
 			return back()->withErrors('Senha atual não confere');
 		}
 
 	}
 
-
-
-	public function zerarguarda()
-	{
-		// busca o usuario
-		$funcionarios    = Funcionario::where('secretaria_id',9)->get();
-
-		foreach ($funcionarios as $key => $funcionario) {
-			echo ("<pre>");
-
-			print_r($funcionario->nome);
-			print_r("  -  ");
-			print_r($funcionario->email);
-			print_r("  -  ");
-			print_r($funcionario->cpf);
-			print_r("  -  ");
-
-			$cpf = trim($funcionario->cpf);
-			$cpf = str_replace(".", "", $cpf);
-			$cpf = str_replace("-", "", $cpf);
-
-			print_r($cpf);
-
-			echo ("</pre>");
-
-			$funcionario->password 	= bcrypt($cpf);
-			$funcionario->save();
-
-			if( $funcionario->email){
-				//Mail::to($funcionario->email)->send(new NovaSenha($funcionario, $cpf));
-				Mail::to($funcionario->email)->send(new GesolToSisrel($funcionario, $cpf));
-			}
-
-		}
-
-		//dd("dsfdsf");
-
-		return response('ok', 200);
-
-	}
 
 
 
@@ -307,31 +265,15 @@ class FuncionarioController extends Controller
 		$funcionario    = Funcionario::find($request->id);
 		$enviar_email   = $funcionario->email;
 
-
-		//gera nova senha
-		//$senha_gerada       		= str_random(6);
-		//$funcionario->password 	    = bcrypt($senha_gerada);
-
-		$senha_gerada       	= substr($funcionario->cpf,0,3);
+        $senha_gerada       	= retiraMascaraCPF($funcionario->cpf);
 		$funcionario->password 	= bcrypt($senha_gerada);
-
 
 
 		Mail::to('marcelo.miranda.pp@gmail.com')->send(new NovaSenha($funcionario, $senha_gerada));
 
-		/* Mail::send('emails.senha',[ 'email' => $funcionario->email, 'senha' => $senha_gerada ], function($message) use ($enviar_email)
-		{
-			$message->to($enviar_email);
-			//$message->to('marcelo.miranda.pp@gmail.com');
-			$message->subject('Senha de acesso ao SGF');
-		});
-		*/
-
 		return response('ok', 200);
 
 	}
-
-
 
 
 }
