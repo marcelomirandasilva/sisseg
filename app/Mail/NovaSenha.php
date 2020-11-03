@@ -17,7 +17,7 @@ class NovaSenha extends Mailable
 
     public $funcionario;
     public $senha;
-
+ 
     public function __construct(Funcionario $funcionario, $senha)
     {
         $this->funcionario  = $funcionario;
