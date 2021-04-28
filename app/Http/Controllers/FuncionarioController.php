@@ -31,7 +31,7 @@ class FuncionarioController extends Controller
 	{
 			// Armazenando o nome do usuário logado na variável $nome_usuario
 		$nome_usuario = Auth::user()->name;
-		$foto_usuario = "images/brasao.png";
+		//$foto_usuario = asset("images/brasao.png");
 
 		//Obter todos as funcionarios do banco de dados
 
@@ -39,7 +39,7 @@ class FuncionarioController extends Controller
 		// dd($funcionarios);
 
 		// Chamar a view passando a variável para ela
-		return view('funcionarios.index', compact('nome_usuario', 'foto_usuario', 'funcionarios'));
+		return view('funcionarios.index', compact('nome_usuario', 'funcionarios'));
 	}
 
 	public function create()

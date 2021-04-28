@@ -23,13 +23,13 @@ class CargoController extends Controller
     {
          // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+        $foto_usuario = asset("images/brasao.png");
 
         //Obter todos as cargos do banco de dados
 
         $cargos = Cargo::all();
         //dd($cargos->all());
-        
+
         // Chamar a view passando a variável para ela
         return view('cargos.index', compact('nome_usuario', 'foto_usuario', 'cargos'));
     }
@@ -53,7 +53,7 @@ class CargoController extends Controller
          //Obter todos os cargos do banco de dados
 
         $cargos = Cargo::all();
-       
+
         return view('cargos.create', compact('nome_usuario', 'foto_usuario', 'secretarias', 'cargos'));
     }
 
@@ -74,7 +74,7 @@ class CargoController extends Controller
             'nome' => 'required',
             'tipo' => 'required',
             'secretaria_id' => 'required',
-    
+
         ]);
 
         $novo_cargo = Cargo::create($request->all());
@@ -106,7 +106,7 @@ class CargoController extends Controller
         $foto_usuario = asset("images/brasao.png");
 
          $cargo = Cargo::find($id);
-         
+
          return view('cargos.edit', compact('cargo', 'nome_usuario', 'foto_usuario'));
     }
 
@@ -124,7 +124,7 @@ class CargoController extends Controller
             'nome' => 'required',
             'tipo' => 'required',
             'secretaria' => 'required',
-            
+
         ]);
 
         // Procurar o cargo pelo id

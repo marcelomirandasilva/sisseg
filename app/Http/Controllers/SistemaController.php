@@ -22,7 +22,7 @@ class SistemaController extends Controller
 
         // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+        $foto_usuario = asset("images/brasao.png");
 
          //Obter todos os sistemas do banco de dados
 
@@ -48,7 +48,7 @@ class SistemaController extends Controller
         //Obter todos os cargos do banco de dados
 
         $sistemas = Sistema::all();
-      
+
         return view('sistemas.create', compact('nome_usuario', 'foto_usuario', 'sistemas'));
     }
 
@@ -66,9 +66,9 @@ class SistemaController extends Controller
 
         // Validar os campos
         $this->validate($request, [
-            'nome' => 'required',            
+            'nome' => 'required',
             'ativo' => 'required',
-    
+
         ]);
 
         $novo_sistema = Sistema::create($request->all());
@@ -101,7 +101,7 @@ class SistemaController extends Controller
 
          $sistema = Sistema::find($id);
          // dd($sistema);
-         
+
          return view('sistemas.edit', compact('sistema', 'nome_usuario', 'foto_usuario', 'sistemas'));
     }
 

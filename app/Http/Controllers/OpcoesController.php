@@ -20,7 +20,7 @@ class OpcoesController extends Controller
     {
          // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+        $foto_usuario = asset("images/brasao.png");
 
         // Chamar a view passando a variável para ela
         return view('opcoes.index', compact('nome_usuario', 'foto_usuario'));

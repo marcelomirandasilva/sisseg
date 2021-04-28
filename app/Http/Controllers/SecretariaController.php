@@ -21,11 +21,11 @@ class SecretariaController extends Controller
     {
          // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+        $foto_usuario = asset("images/brasao.png");
 
         //Obter todos as secretarias do banco de dados
 
-        $secretarias = Secretaria::all();        
+        $secretarias = Secretaria::all();
 
         // Chamar a view passando a variável para ela
         return view('secretarias.index', compact('nome_usuario', 'foto_usuario', 'secretarias'));
@@ -41,11 +41,11 @@ class SecretariaController extends Controller
         // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
         $foto_usuario = asset("images/brasao.png");
-       
+
          //Obter todos os cargos do banco de dados
 
         $secretarias = Secretaria::all();
-      
+
         return view('secretarias.create', compact('nome_usuario', 'foto_usuario', 'secretarias'));
     }
 
@@ -63,11 +63,11 @@ class SecretariaController extends Controller
 
         // Validar os campos
         $this->validate($request, [
-            'nome' => 'required',            
+            'nome' => 'required',
             'secretario' => 'required',
             'sigla' => 'required',
             'operante' => 'required',
-    
+
         ]);
 
         $nova_secretaria = Secretaria::create($request->all());
@@ -99,7 +99,7 @@ class SecretariaController extends Controller
         $foto_usuario = asset("images/brasao.png");
 
          $secretaria = Secretaria::find($id);
-         
+
          return view('secretarias.edit', compact('secretaria', 'nome_usuario', 'foto_usuario'));
     }
 

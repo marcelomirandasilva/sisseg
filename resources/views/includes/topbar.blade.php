@@ -9,11 +9,11 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{$foto_usuario or "Foto"}}" alt="">{{ $nome_usuario or "Login" }}
+                   {{ $nome_usuario or "Login" }}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                 
+
                     <li>
                       <a href="javascript:;">
                         <span>Opções</span>
@@ -28,7 +28,7 @@
                             @csrf
                         </form>
                   </li>
-                  
+
                   </ul>
                 </li>
 
@@ -40,7 +40,7 @@
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
                       <a>
-                        <span class="image"><img src="{{$foto_usuario or "Foto"}}" alt="Profile Image" /></span>
+                        
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -52,7 +52,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{{$foto_usuario or "Foto"}}" alt="Profile Image" /></span>
+                        
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -64,7 +64,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{{$foto_usuario or "Foto"}}" alt="Profile Image" /></span>
+                        
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>
@@ -76,7 +76,7 @@
                     </li>
                     <li>
                       <a>
-                        <span class="image"><img src="{{$foto_usuario or "Foto"}}" alt="Profile Image" /></span>
+                        
                         <span>
                           <span>John Smith</span>
                           <span class="time">3 mins ago</span>

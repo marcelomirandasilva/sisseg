@@ -22,7 +22,7 @@ class SetorController extends Controller
     {
          // Armazenando o nome do usuário logado na variável $nome_usuario
         $nome_usuario = Auth::user()->name;
-        $foto_usuario = "images/brasao.png";
+        $foto_usuario = asset("images/brasao.png");
 
         //Obter todos os setores do banco de dados
         $setores = Setor::all();
@@ -51,7 +51,7 @@ class SetorController extends Controller
          //Obter todos os cargos do banco de dados
 
         $setores = Setor::all();
-      
+
         return view('setores.create', compact('nome_usuario', 'foto_usuario', 'secretarias', 'setores'));
     }
 
@@ -69,10 +69,10 @@ class SetorController extends Controller
 
         // Validar os campos
         $this->validate($request, [
-            'nome' => 'required',            
+            'nome' => 'required',
             'secretaria_id' => 'required',
             'operante' => 'required',
-    
+
         ]);
 
         $novo_setor = Setor::create($request->all());
@@ -104,7 +104,7 @@ class SetorController extends Controller
         $foto_usuario = asset("images/brasao.png");
 
          $setor = Setor::find($id);
-         
+
          return view('setores.edit', compact('setor', 'nome_usuario', 'foto_usuario'));
     }
 
