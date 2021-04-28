@@ -17,14 +17,14 @@ class NovaSenha extends Mailable
 
     public $funcionario;
     public $senha;
- 
+
     public function __construct(Funcionario $funcionario, $senha)
     {
         $this->funcionario  = $funcionario;
         $this->senha = $senha;
     }
-    
-    
+
+
     public function build()
     {
         return $this->markdown('emails.nova_senha')
