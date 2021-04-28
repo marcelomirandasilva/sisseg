@@ -84,12 +84,12 @@
 							</select>
 						</div>
 					</div>
-					
+
 					<div class="form-group row">
 						<label class="col-md-2 col-form-label text-md-right" for="motorista">Motorista</label>
 						<div class="col-md-1">
 							@if (isset($funcionario))
-								<input class="form-control" id="motorista" type="checkbox" name="motorista" onchange="habilitar_motorista()" 
+								<input class="form-control" id="motorista" type="checkbox" name="motorista" onchange="habilitar_motorista()"
 									@if($funcionario->motorista) checked @endif
 								/>
 							@else
@@ -104,8 +104,8 @@
 							<div class="col-md-7">
 								@if (isset($funcionario))
 									<input type="celular" id="celular" class="form-control" name="celular"
-										value="{{$funcionario->celular or old('celular')}}" 
-										@if(!$funcionario->motorista) disabled @endif 
+										value="{{$funcionario->celular or old('celular')}}"
+										@if(!$funcionario->motorista) disabled @endif
 									/>
 								@else
 									<input type="celular" id="celular" class="form-control" name="celular"
@@ -113,16 +113,16 @@
 								@endif
 							</div>
 						</div>
-		
+
 						<div class="col-md-6">
 							<label class="col-md-2 col-form-label " for="cnh">CNH</label>
 							<div class="col-md-7">
 								@if (isset($funcionario))
-									<input type="cnh" id="cnh" class="form-control" name="cnh" 
-										value="{{$funcionario->cnh or old('cnh')}}" 
+									<input type="cnh" id="cnh" class="form-control" name="cnh"
+										value="{{$funcionario->cnh or old('cnh')}}"
 										@if(!$funcionario->motorista) disabled @endif/>
 								@else
-									<input type="cnh" id="cnh" class="form-control" name="cnh" 
+									<input type="cnh" id="cnh" class="form-control" name="cnh"
 										value="{{$funcionario->cnh or old('cnh')}}" disabled/>
 								@endif
 							</div>
@@ -155,7 +155,7 @@
 							<label class="col-md-2 col-form-label text-md-right" for="validade_cnh">Validade</label>
 							<div class="col-md-7">
 								@if(isset($funcionario))
-									<input type="date" id="validade_cnh" class="form-control" name="validade_cnh" 
+									<input type="date" id="validade_cnh" class="form-control" name="validade_cnh"
 										value="{{$funcionario->validade_cnh }}" disabled />
 								@else
 									<input type="date" id="validade_cnh" class="form-control" name="validade_cnh" value="" disabled />
@@ -163,17 +163,17 @@
 							</div>
 						</div>
 					</div>
-				
+
 
 					 {{-- BOTÕES --}}
 					 <div class="ln_solid"> </div>
 					 <div class="footer text-center"> {{-- col-md-3 col-md-offset-9 --}}
 						 <button id="btn_cancelar" class="botoes-acao btn  btn-primary" >
-							 <span class="icone-botoes-acao mdi mdi-backburger"></span>   
+							 <span class="icone-botoes-acao mdi mdi-backburger"></span>
 							 <span class="texto-botoes-acao"> CANCELAR </span>
 							 <div class="ripple-container"></div>
 						 </button>
-					 
+
 						 <button type="submit" id="btn_salvar" class="botoes-acao btn  btn-success ">
 							 <span class="icone-botoes-acao mdi mdi-send"></span>
 							 <span class="texto-botoes-acao"> SALVAR </span>
@@ -198,7 +198,7 @@
 		//VMasker ($("#validade_cnh")).maskPattern("99/99/9999");
 		VMasker ($("#categoria_cnh")).maskPattern("AA");
 		VMasker ($("#cnh")).maskPattern("99.999.999.999");
-		VMasker ($("#celular")).maskPattern("99999-9999"); 
+		VMasker ($("#celular")).maskPattern("99999-9999");
 		VMasker ($("#cpf")).maskPattern("999.999.999-99");
 
 		//Habilitar MOTORISTA
@@ -218,7 +218,7 @@
     	}
 
 		$(function(){
-			
+
 			if(document.getElementById('motorista').checked){
             document.getElementById('celular').removeAttribute("disabled");
             document.getElementById('cnh').removeAttribute("disabled");
@@ -236,56 +236,56 @@
 				event.preventDefault();
 				window.history.back();
 			});
-				
+
 			// Fazer a chamada no evento CHANGE do select de secretarias
 			$("select#secretaria").change(function(){
-				
+
 				// Guardar o id da secretaria em uma variável
 				let secretaria_id = $(this).val();
 
 				// Fazer a chamada para a API usando o valor do ID
-				$.get("/api/setoresporsecretaria/" + secretaria_id, function(resultados){
+//				$.get("/api/setoresporsecretaria/" + secretaria_id, function(resultados){
+//
+//					// Deletar todas as options
+//					$("select#setor").empty();
+//
+//					// Adicionar a opção "Selecione..."
+//					$("select#setor").append(`<option value=''>Selecione um Setor...</option>`);
+//
+//					// Iterar por todos os resultados e chamar a função passando o índice e o valor
+//					$.each(resultados, function(indice, valor){
+//
+//							// Selectionar o Select de Setores e adicionar um option para cada valor
+//							$("select#setor").append(`<option value='${valor.id}'>${valor.nome}</option>`);
+//
+//					});
+//
+//				});
+//
+//                $.get("/api/cargosporsecretaria/" + secretaria_id, function(resultados){
+//
+//					// Deletar todas as options
+//					$("select#cargo").empty();
+//
+//					// Adicionar a opção "Selecione..."
+//					$("select#cargo").append(`<option value=''>Selecione um Cargo...</option>`);
+//
+//					// Iterar por todos os resultados e chamar a função passando o índice e o valor
+//					$.each(resultados, function(indice, valor){
+//
+//							// Selectionar o Select de cargos e adicionar um option para cada valor
+//							$("select#cargo").append(`<option value='${valor.id}'>${valor.nome}</option>`);
+//
+//					});
+//
+//				});
 
-					// Deletar todas as options
-					$("select#setor").empty();
-
-					// Adicionar a opção "Selecione..."
-					$("select#setor").append(`<option value=''>Selecione um Setor...</option>`); 
-					
-					// Iterar por todos os resultados e chamar a função passando o índice e o valor
-					$.each(resultados, function(indice, valor){
-							
-							// Selectionar o Select de Setores e adicionar um option para cada valor
-							$("select#setor").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
-
-					});
-
-				});
-
-					$.get("/api/cargosporsecretaria/" + secretaria_id, function(resultados){
-					
-					// Deletar todas as options
-					$("select#cargo").empty();
-
-					// Adicionar a opção "Selecione..."
-					$("select#cargo").append(`<option value=''>Selecione um Cargo...</option>`); 
-					
-					// Iterar por todos os resultados e chamar a função passando o índice e o valor
-					$.each(resultados, function(indice, valor){
-							
-							// Selectionar o Select de cargos e adicionar um option para cada valor
-							$("select#cargo").append(`<option value='${valor.id}'>${valor.nome}</option>`); 
-
-					});
-
-				});
-
-			});      
+			});
 
 
 		});
 
-		
+
 
 	</script>
 
