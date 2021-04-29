@@ -195,6 +195,7 @@
 
 	<script>
 
+
 		//VMasker ($("#validade_cnh")).maskPattern("99/99/9999");
 		VMasker ($("#categoria_cnh")).maskPattern("AA");
 		VMasker ($("#cnh")).maskPattern("99.999.999.999");
@@ -202,34 +203,34 @@
 		VMasker ($("#cpf")).maskPattern("999.999.999-99");
 
 		//Habilitar MOTORISTA
-   	function habilitar_motorista(){
-        if(document.getElementById('motorista').checked){
-            document.getElementById('celular').removeAttribute("disabled");
-            document.getElementById('cnh').removeAttribute("disabled");
-            document.getElementById('categoria_cnh').removeAttribute("disabled");
-            document.getElementById('validade_cnh').removeAttribute("disabled");
+        function habilitar_motorista(){
+            if(document.getElementById('motorista').checked){
+                document.getElementById('celular').removeAttribute("disabled");
+                document.getElementById('cnh').removeAttribute("disabled");
+                document.getElementById('categoria_cnh').removeAttribute("disabled");
+                document.getElementById('validade_cnh').removeAttribute("disabled");
+            }
+            else {
+                document.getElementById('celular').setAttribute("disabled", "disabled");
+                document.getElementById('cnh').setAttribute("disabled", "disabled");
+                document.getElementById('categoria_cnh').setAttribute("disabled", "disabled");
+                document.getElementById('validade_cnh').setAttribute("disabled", "disabled");
+            }
         }
-        else {
-            document.getElementById('celular').setAttribute("disabled", "disabled");
-            document.getElementById('cnh').setAttribute("disabled", "disabled");
-            document.getElementById('categoria_cnh').setAttribute("disabled", "disabled");
-            document.getElementById('validade_cnh').setAttribute("disabled", "disabled");
-        }
-    	}
 
 		$(function(){
-
-			if(document.getElementById('motorista').checked){
-            document.getElementById('celular').removeAttribute("disabled");
-            document.getElementById('cnh').removeAttribute("disabled");
-            document.getElementById('categoria_cnh').removeAttribute("disabled");
-            document.getElementById('validade_cnh').removeAttribute("disabled");
-        }else {
-            document.getElementById('celular').setAttribute("disabled", "disabled");
-            document.getElementById('cnh').setAttribute("disabled", "disabled");
-            document.getElementById('categoria_cnh').setAttribute("disabled", "disabled");
-            document.getElementById('validade_cnh').setAttribute("disabled", "disabled");
-        }
+            
+            if(document.getElementById('motorista').checked){
+                document.getElementById('celular').removeAttribute("disabled");
+                document.getElementById('cnh').removeAttribute("disabled");
+                document.getElementById('categoria_cnh').removeAttribute("disabled");
+                document.getElementById('validade_cnh').removeAttribute("disabled");
+            }else {
+                document.getElementById('celular').setAttribute("disabled", "disabled");
+                document.getElementById('cnh').setAttribute("disabled", "disabled");
+                document.getElementById('categoria_cnh').setAttribute("disabled", "disabled");
+                document.getElementById('validade_cnh').setAttribute("disabled", "disabled");
+            }
 
 			//botão de cancelar
 			$("#btn_cancelar").click(function(){
